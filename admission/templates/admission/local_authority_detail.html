@@ -1,0 +1,121 @@
+{% extends "admission/base2.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div class="header-advance-area">
+  <!-- Mobile Menu end -->
+            <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                             <h3>Local Authority List</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Local Authority List</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Static Table Start -->
+
+     <div class="mailbox-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-md-3 col-sm-3 col-xs-12">
+                {% include "admission/admin_side_panel.html" %}
+                    </div>
+
+    <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+
+         <div class="hpanel email-compose mailbox-view">
+
+                             <div class="row">
+                                    <div class="col-md-6 col-md-6 col-sm-6 col-xs-8">
+                                        <div class="btn-group ib-btn-gp active-hook mail-btn-sd mg-b-15">
+                                            <a href="{% url 'authority-detail' object.id %}" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
+                                            <a href="{% url 'authority-create'%}" class="btn btn-default btn-sm"><i class="fa fa-user-plus"></i> New Local Authority</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-md-6 col-sm-6 col-xs-4 mailbox-pagination">
+                                        <div class="btn-group ib-btn-gp active-hook mail-btn-sd mg-b-15">
+                                            <a href="{% url 'authority-list'%}"  class="btn btn-default btn-sm">View Local Authorities <i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                            <div class="panel-heading hbuilt">
+
+                                <div class="p-xs h4">
+                                    <small class="pull-right view-hd-ml">
+										</small><b>Local Authority:</b>  {{object.authority_name}}
+
+                                </div>
+                            </div>
+                            <div class="border-top border-left border-right bg-light">
+                                <div class="p-m custom-address-mailbox">
+
+                                    <div>
+                                        <span class="font-extra-bold"><b>Address</b> {{object.authority_address}} &ensp;  </span>
+                                    </div>
+                                    <div>
+                                        <span class="font-extra-bold"><b>Location</b></span> {{object.authority_location}}
+                                    </div>
+
+                                       <div>
+                                        <span class="font-extra-bold"><b>Email Address</b></span> {{object.authority_email}}
+                                    </div>
+
+                                    <div>
+                                        <span class="font-extra-bold"><b>Phone Number</b></span> {{object.authority_phone}}
+                                    </div>
+                                </div>
+                            </div>
+       <div class="article-metadata">
+        <small class="text-muted"> Added On {{ object.date_added|date:"F d, Y" }}</small>
+
+      </div>
+
+                            <div class="panel-footer text-right ft-pn">
+
+                                <div class="btn-group active-hook">
+                                    <button class="btn btn-default"><i class="fa fa-arrow-right"></i>Save</button>
+                                    <a href="{% url 'authority-update' object.id %}" class="btn btn-default"><i class="fa fa-pencil"></i> Update</a>
+                                    <button class="btn btn-default"><i class="fa fa-trash-o"></i> Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  </div>
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}

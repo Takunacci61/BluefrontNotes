@@ -1,0 +1,99 @@
+{% extends "notes/base.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-windows"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Young Persons Notes</h2>
+										<p>Young Persons Notes <span class="bread-ntd">Simbarashe Nyagweta</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<a href="" data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+
+
+        <!-- Static Table Start -->
+
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Notes List</h2>
+                            <p>These are dairly notes that are collected on a dairly basis</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+      <th data-field="state" data-checkbox="true"></th>
+      <th>Name</th>
+      <th>Date Entered</th>
+      <th>Notes Detail</th>
+      <th>Handling Staff</th>
+      <th>Date Added</th>
+      <th>Action</th>
+
+                                            </tr>
+                                        </thead>
+  <!--Table head-->
+
+ <tbody>
+
+{% for yp_note in notes %}
+  <!--Table body-->
+           <tr>
+      <td></td>
+      <td>{{ yp_note.yp}}</td>
+      <td>{{ yp_note.date_notes|date:"F d, Y" }}</td>
+      <td>{{ yp_note.detailed_notes|safe}}</td>
+      <td>{{ yp_note.staff }}</td>
+      <td>{{ yp_note.date_added|date:"F d, Y" }}</td>
+       <td><a href="{% url 'notes-detail' yp_note.id  %}" data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-eye" aria-hidden="true"></i></a>
+            <a href="{% url 'notes-detail' yp_note.id  %}"  data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+
+   <!--Table body-->
+    </tr>
+    {% endfor %}
+
+  </tbody>
+                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+    {% else %}
+    <h1>You need to login</h1>
+    {% endif %}
+
+{% endblock content %}
+

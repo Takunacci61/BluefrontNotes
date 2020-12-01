@@ -1,0 +1,24 @@
+{% if user.is_authenticated %}
+     <div class="hpanel responsive-mg-b-30">
+                            <div class="panel-body">
+                                <ul class="mailbox-list"><hr>
+                                    <li><a href="{% url  'post-create' %}"><i class="fa fa-user"></i>Add Young Person</a>
+                                    </li><hr>
+                                    <li><a href="{% url 'home-create'%}"><i class="fa fa-home"></i>Add Care Home</a>
+                                    </li><hr>
+                                    <li> <a href="{% url 'authority-create'%}"><i class="fa fa-building"></i>Add Local Authority</a>
+                                    </li><hr>
+                                    <li><a href="{% url 'location-create'%}"><i class="fa fa-location-arrow"></i>Add Locations</a></li>
+                                    </li>
+                                </ul> <hr>
+                            </div>
+                        </div>
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+{% endif %}

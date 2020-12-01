@@ -1,0 +1,64 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+        <div class="contacts-area mg-b-15">
+            <div class="container-fluid">
+
+
+
+
+                <div class="row">
+                     {% for yp in young_person_info %}
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="hpanel hblue contact-panel contact-panel-cs res-tablet-mg-t-30 dk-res-t-pro-30">
+                            <div class="panel-body custom-panel-jw">
+                                <div class="social-media-in">
+                                    <a href="{% url 'child-detail' yp.id %}"><i class="fa fa-eye"></i></a>
+                                    <a href="{% url 'notes-create' yp.id  %}"><i class="fa fa-sticky-note"></i></a>
+                                    <a href="{% url 'notes-list' yp.id  %}"><i class="fa fa-comment"></i></a>
+
+                                </div>
+                                <img alt="logo" class="img-circle m-b" src="{{ yp.profile.image.url }}" style="width:75px;">
+                                <h3>{{ yp.yp_first_name}} - {{ yp.yp_surname}}</h3>
+                                <p class="all-pro-ad">{{ yp.local_authority}}</p>
+                                <p class="all-pro-ad"> Assigned Stuff:  {{ yp.staff}}</p>
+
+                            </div>
+                            <div class="panel-footer contact-footer">
+                                <div class="professor-stds-int">
+                                    <div class="professor-stds">
+                                        <div class="contact-stat"><span>Admission on  </span> <strong>{{ yp.yp_date_added}}</strong></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}
+
+
+
+
+
+
+
+

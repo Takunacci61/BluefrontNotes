@@ -1,0 +1,167 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>{{ object.yp_first_name }} &nbsp;{{object.yp_surname }}</h2>
+                                        <p>Young Person's General Information <span class="bread-ntd"><b>captured into the system</b></span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+
+    <!-- Inbox area Start-->
+    <div class="inbox-area">
+        <div class="container">
+            <div class="row">
+                {% include "admission/side_menu.html" %}
+
+<!---The content starts here --->
+
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="inbox-text-list sm-res-mg-t-30">
+                        <div class="inbox-btn-st-ls btn-toolbar">
+                            <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-refresh"></i> Refresh</button>
+                                <a href="{% url  'child-update' object.id %}" class="btn btn-default btn-sm"><i class="notika-icon notika-edit"></i> Edit</a>
+
+            <!---Test Model --->
+                                <a href="{% url  'child-delete' object.id %}" id="sa-warning" class="btn btn-default btn-sm"><i class="notika-icon notika-trash"></i> Delete</a>
+           <!---Test Model --->
+
+                            </div>
+                            <div class="btn-group ib-btn-gp active-hook nk-act nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-left-arrow"></i></button>
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-right-arrow"></i></button>
+                            </div>
+                        </div><hr>
+                       <div class="typography-in-hd typography-mgn">
+                            <h2 class="mn-hd-s">General Information</h2>
+                        </div><hr>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Full Name</h2>
+                                    <p>{{ object.yp_first_name }}  &nbsp; {{object.yp_surname }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Assigned ID</h2>
+                                    <p>{{ object.yp_assigned_id }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Nickname/Street Name</h2>
+                                    <p>{{ object.yp_nickname }}</p>
+                                </div>
+
+                            </div>
+                        </div><hr>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Previous Name (If Any)</h2>
+                                    <p>{{ object.yp_previous_name }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Ethnicity</h2>
+                                    <p>{{ object.yp_ethnicity}}</p>
+                                </div>
+                            </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Nationality</h2>
+                                    <p>{{ object.yp_nationality}}</p>
+                                </div>
+                            </div>
+                        </div><hr>
+                    <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Country of Origin </h2>
+                                    <p>{{ object.yp_country_origin }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Date of Birth</h2>
+                                    <p>{{ object.yp_date_of_birth|date:"F d, Y" }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>First Language</h2>
+                                    <p>{{ object.yp_first_language}}</p>
+                                </div>
+
+                            </div>
+                        </div><hr>
+
+                              <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Other Spoken Languages</h2>
+                                    <p>{{ object.yp_other_spoken_languages}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>Status</h2>
+                                    <p>{{ object.yp_status}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="tpgp-ele-tx">
+                                    <h2>UASC </h2>
+                                    <p>{{ object.yp_uasc}}</p>
+                                </div>
+
+                            </div>
+                        </div><hr>
+
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Inbox area End-->
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,114 @@
+{% extends "notes/base.html" %}
+{% block content %}
+        <div class="header-advance-area">
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-windows"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Young Persons Notes Report</h2>
+										<p>Genarate note report for <span class="bread-ntd"><b>Simbarashe Nyagweta</b></span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<a href="" data-toggle="tooltip" data-placement="left" title="Download Full Report" class="btn"><i class="notika-icon notika-sent"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+
+    <div class="form-example-area">
+        <div class="container">
+            <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <form method ="GET"class="form-example-wrap">
+            {% csrf_token %}
+              <div class="form-example-int mg-t-15">
+                 <div class="form-group">
+            {{ filtered_yp.form.as_p }}
+                </div>
+            </div>
+       <div class="form-example-int mg-t-15">
+                <button class="btn btn-primary notika-btn-success" type="submit">Filter</button>
+               <button class="btn btn-primary notika-btn-success" name="pdf_download"  type="submit">Generate Report</button>
+            </div>
+        </form>
+
+            </div>
+                    </div>
+                </div>
+            </div>
+
+
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Notes List</h2>
+                            <p>These are dairly notes that are collected on a dairly basis</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+      <th data-field="state" data-checkbox="true"></th>
+      <th>Name</th>
+      <th>Date Entered</th>
+      <th>Notes Detail</th>
+      <th>Handling Staff</th>
+      <th>Date Added</th>
+      <th>Action</th>
+
+                                            </tr>
+                                        </thead>
+  <!--Table head-->
+
+ <tbody>
+
+  <!--Table head-->
+{% for young_person in filtered_yp.qs %}
+<tr>
+<td></td>
+<td>{{young_person.yp}}</td>
+<td>{{young_person.date_notes}}</td>
+<td>{{young_person.time_start}}</td>
+<td>{{young_person.time_end}}</td>
+<td>{{young_person.detailed_notes |safe}}</td>
+<td>{{young_person.staff}}</td>
+<td>{{young_person.position.user}}</td>
+<td>{{ young_person.yp_date_added|date:"F d, Y" }}</td>
+<td><a href="#" class="fa fa-eye"></a>
+           <a href="#" class="fa fa-sticky-note"></a></td>
+
+</tr>
+    {% endfor %}
+
+  </tbody>
+                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Table area End-->
+{% endblock content %}
+>

@@ -1,0 +1,133 @@
+{% extends "admission/base2.html" %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+ <div class="breadcome-area">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="breadcome-list">
+                              <div class="row">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                      <ul class="breadcome-menu">
+                                          <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                          </li>
+                                          <li><span class="bread-blod">Local Authority Details</span>
+                                          </li>
+                                          <li><span class="bread-blod">{{ object.yp_first_name}} {{ object.yp_surname}}</span>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+    <!-- Start Welcome area -->
+
+ <div class="mailbox-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-md-3 col-sm-3 col-xs-12">
+                {% include "admission/side_menu.html" %}
+                    </div>
+
+
+
+<!---The content starts here --->
+
+
+                    <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                         <div class="hpanel email-compose mailbox-view">
+
+                             <div class="row">
+                                    <div class="col-md-6 col-md-6 col-sm-6 col-xs-8">
+                                        <div class="btn-group ib-btn-gp active-hook mail-btn-sd mg-b-15">
+                                            <a href="{% url 'young-money' object.id %}" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i> Refresh</a>
+                                            <a href="{% url 'overview-detail' object.id %}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> View Full Profile</a>
+                                            <a href="{% url 'post-create'%}" class="btn btn-default btn-sm"><i class="fa fa-user-plus"></i> New Admission</a>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-md-6 col-sm-6 col-xs-4 mailbox-pagination">
+                                        <div class="btn-group ib-btn-gp active-hook mail-btn-sd mg-b-15">
+                                            <a href="{% url 'health-detail'  object.id %}" class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i></a>
+                                            <a href="{% url 'profile-detail'  object.id %}"  class="btn btn-default btn-sm"><i class="fa fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+
+                                  <div class="panel-heading hbuilt">
+
+                                <div class="p-xs h4">
+                                    <small class="pull-right view-hd-ml">
+										Young Person : {{ object.yp_first_name}} {{ object.yp_surname}}
+										</small>
+
+                                </div>
+                            </div>
+
+                                               <div class="row mg-b-15">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="skill-title">
+                                                                    <h2>Placing Authority Details</h2>
+                                                                    <hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                       <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b>Name of Placing Authority</b><br />{{ object.local_authority.authority_name }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b>Email</b><br />{{object.local_authority.authority_email}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b>Phone Number</b><br /> {{object.local_authority.authority_phone}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b>Authority Address</b><br />{{object.local_authority.authority_address }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                             <hr>
+
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}

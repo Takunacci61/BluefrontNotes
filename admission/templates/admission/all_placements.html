@@ -1,0 +1,104 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+       <style>
+
+       .contact-area .row {
+    margin-bottom: 20px;
+}
+
+     .contact-area .row:last-child {
+    margin-bottom: 0;
+    }
+       </style>
+
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Placements</h2>
+										<p>All Young Adult <span class="bread-ntd">Placements</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+    <!-- Contact area Start-->
+    <div class="contact-area">
+        <div class="container">
+            <div class="row">
+                 {% for yp in young_person_info %}
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                 <div class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                    <div class="contact-list">
+                        <div class="contact-win">
+                            <div class="contact-img">
+                                <img src="{{ yp.profile.image.url }}" alt="" />
+                            </div>
+                            <div class="conct-sc-ic">
+                                <a class="btn" data-toggle="tooltip"  data-placement="left" title="View Profile" href="{% url 'child-detail' yp.id %}"><i class="notika-icon notika-eye"></i></a>
+                                <a class="btn" data-toggle="tooltip"  data-placement="left" title="Add Notes" href="{% url 'notes-create' yp.id  %}"><i class="notika-icon notika-form"></i></a>
+                                <a class="btn" data-toggle="tooltip"  data-placement="left" title="View Notes"  href="{% url 'notes-list' yp.id  %}"><i class="notika-icon notika-chat"></i></a>
+                            </div>
+                        </div>
+                        <div class="contact-ctn">
+                            <div class="contact-ad-hd">
+								<h2>{{ yp.yp_first_name}} - {{ yp.yp_surname}}</h2>
+								<p class="ctn-ads">{{ yp.local_authority}}</p>
+							</div>
+                            <p>Assigned Stuff:  {{ yp.staff}}</p>
+                        </div>
+                        <div class="social-st-list">
+                            <div class="social-sn">
+                                <h2>Placement Date:</h2>
+                                <p>{{ yp.yp_date_added}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+    {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Contact area End-->
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+
+{% endblock content %}
+
+
+
+
+
+
+
+

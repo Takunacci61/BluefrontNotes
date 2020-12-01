@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Out Put</title>
+    <style>
+   @page {
+       size: A4;
+       margin: 2.5cm 1.5cm 3.5cm;
+       font-family: "Microsoft Sans Serif";
+
+    @top-center{
+        content:  "Bluefront Care Young Adult Notes";
+
+   }
+
+   }
+
+               h1 {
+          text-align: center;
+}
+
+</style>
+
+</head>
+<body>
+
+<img src="https://bluefrontcare.co.uk/uploads/34389-preview-full-bluefront-care-logo.png" alt="Italian Trulli" width="50" height="50">
+
+     <h1>YP Support Report </h1><br>
+
+<h4>Name of Young Adult {{object.yp}}</h4><br>
+
+ <hr>
+{% for young_person in filtered_yp.qs %}
+<p class="article-content"><b>Young Person Name :</b> {{young_person.yp}}</p>
+<p class="article-content"><b>Contact Date:</b> {{young_person.date_notes}}</p>
+ <p class="article-content"><b>Start Time:</b> {{young_person.time_start}} &ensp; <b>End Time:</b> {{young_person.time_end}}</p>
+
+<br>
+
+ <p class="article-content"><b>Detailed Notes</b></p>
+<p class="article-content">{{young_person.detailed_notes |safe}}</p>
+<p class="article-content">{{young_person.staff}} | Postion : {{young_person.position.user}}  </p>
+ <div class="article-metadata">
+ <small class="text-muted"> Added On {{ young_person.yp_date_added|date:"F d, Y" }}</small>
+
+
+ <hr>
+      {%endfor%}
+
+<p>Bluefront System Generate Report @2020</p>
+
+</body>
+</html>

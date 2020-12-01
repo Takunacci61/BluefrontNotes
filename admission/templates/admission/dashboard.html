@@ -1,0 +1,22 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+
+
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+
+{% endblock content %}
+

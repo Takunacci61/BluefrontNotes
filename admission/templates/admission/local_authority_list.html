@@ -1,0 +1,103 @@
+{% extends "notes/base.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-windows"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Local Authority List</h2>
+										<p>List of all the Local Authority <span class="bread-ntd">in Database</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+
+
+    <!-- Data Table area Start-->
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Local Authority</h2>
+                            <p>These are all the local authorities that have been recorded in the database.</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                            <tr>
+                                                <th data-field="state" data-checkbox="true"></th>
+                                        <th>Local Authority Name</th>
+                                        <th>Address</th>
+                                        <th>Location</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Action</th>
+                                            </tr>
+                                        </thead>
+  <!--Table head-->
+
+ <tbody>
+
+    {% for local_authority in local_authority_list %}
+  <!--Table body-->
+           <tr>
+      <td></td>
+       <td>{{local_authority.authority_name}}</td>
+      <td>{{ local_authority.authority_address}}</td>
+      <td>{{ local_authority.authority_location}}</td>
+      <td>{{ local_authority.authority_email}}</td>
+      <td>{{ local_authority.authority_phone}}</td>
+       <td style="width:5%"><a href="{% url 'authority-detail' local_authority.id %}" class="fa fa-eye"></a>
+           <a href="{% url 'authority-update' local_authority.id %}" class="fa fa-pencil-square"></a></td>
+
+
+  <!--Table body-->
+    </tr>
+    {% endfor %}
+
+  </tbody>
+                                    </table>
+                                                       </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  </div>
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+
+{% endblock content %}
