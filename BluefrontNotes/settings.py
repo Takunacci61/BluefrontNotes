@@ -84,16 +84,10 @@ WSGI_APPLICATION = 'BluefrontNotes.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'd17ffj7namjhhs',
-        'USER': 'ngigeupeqovmub',
-        'PASSWORD': '3a0717e7c99a6401c3f132de7dd2b23a17362dc27eca2f40047ebfedcfbfbadf',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", },
-
-    }
+  'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
+ }
 }
 
 

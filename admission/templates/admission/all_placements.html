@@ -48,16 +48,20 @@
     <!-- Contact area Start-->
     <div class="contact-area">
         <div class="container">
+
+
+
+
+   {% for yp in young_person_info %}
+   {% if forloop.first %}
             <div class="row">
-                 {% for yp in young_person_info %}
-
-
+  {% endif %}
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                  <div class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
                     <div class="contact-list">
                         <div class="contact-win">
                             <div class="contact-img">
-                                <img src="{{ yp.profile.image.url }}" alt="" />
+                                <img src="{{yp.profile.image.url}}" alt="" />
                             </div>
                             <div class="conct-sc-ic">
                                 <a class="btn" data-toggle="tooltip"  data-placement="left" title="View Profile" href="{% url 'child-detail' yp.id %}"><i class="notika-icon notika-eye"></i></a>
@@ -81,8 +85,27 @@
                     </div>
 
                 </div></div>
-    {% endfor %}
+       {% if forloop.counter|divisibleby:"4" %}
             </div>
+       {% if not forloop.last %}
+          <div class="row">
+        {% endif %}
+       {% endif %}
+    {% if forloop.last %}
+         </div>
+    {% endif %}
+
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
     <!-- Contact area End-->
