@@ -17,7 +17,7 @@ from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path (__file__).resolve ().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -86,16 +86,15 @@ WSGI_APPLICATION = 'BluefrontNotes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'heroku_6ba58e586a38808',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'd17ffj7namjhhs',
+        'USER': 'ngigeupeqovmub',
+        'PASSWORD': '3a0717e7c99a6401c3f132de7dd2b23a17362dc27eca2f40047ebfedcfbfbadf',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", },
 
     }
 }
-
 
 
 db_from_env = dj_database_url.config()
@@ -135,7 +134,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressManifestStaticFilesStorage'
 
