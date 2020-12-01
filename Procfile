@@ -1,1 +1,1 @@
-web: gunicorn BluefronNotes.wsgi
+web: gunicorn BluefrontNotes.wsgi
