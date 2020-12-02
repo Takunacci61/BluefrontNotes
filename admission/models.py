@@ -674,20 +674,45 @@ class YP_General_Information(models.Model):
 
     ]
 
-    WHITE_EUROPEAN = 'White European'
-    DARK_EUROPEAN = 'Dark European'
-    AFRO_CARIBBEAN = 'Afro Caribbean'
-    ASIAN = 'Asian'
-    ORIENTAL = 'Oriental'
-    UNKNOWN = 'Unknown'
+    OPTION_1 = 'White - English/Welsh/Scottish/Northern Irish/British'
+    OPTION_2 = 'White - Irish'
+    OPTION_3 = 'White - Gypsy or Irish Traveller'
+    OPTION_4 = 'White - Any other White background'
+    OPTION_5 = 'Mixed - White and Black Caribbean'
+    OPTION_6 = 'Mixed - White and Black African'
+    OPTION_7 = 'Mixed - White and Asian'
+    OPTION_8 = 'Mixed - Any other Mixed/Multiple ethnic background'
+    OPTION_9 = 'Asian - Indian'
+    OPTION_10 = 'Asian - Pakistani'
+    OPTION_11 = 'Asian - Bangladeshi'
+    OPTION_12 = 'Asian - Chinese'
+    OPTION_13 = 'Asian - Any other Asian background'
+    OPTION_14 = 'Black - African'
+    OPTION_15 = 'Black - Caribbean'
+    OPTION_16 = 'Black - Any other Black/African/Caribbean background'
+    OPTION_17 = 'Arab'
+    OPTION_18 = 'Any other ethnic group'
 
     ETHNICITY = [
-        (WHITE_EUROPEAN, 'White European'),
-        (DARK_EUROPEAN, 'Dark European'),
-        (AFRO_CARIBBEAN, 'Afro Caribbean'),
-        (ASIAN, 'Asian'),
-        (ORIENTAL, 'Oriental'),
-        (UNKNOWN, 'Unknown')
+        (OPTION_1, 'White - English/Welsh/Scottish/Northern Irish/British'),
+        (OPTION_2, 'White - Irish'),
+        (OPTION_3, 'White - Gypsy or Irish Traveller'),
+        (OPTION_4, 'White - Any other White background'),
+        (OPTION_5, 'Mixed - White and Black Caribbean'),
+        (OPTION_6, 'Mixed - White and Black African'),
+        (OPTION_7, 'Mixed - White and Asian'),
+        (OPTION_8, 'Mixed - Any other Mixed/Multiple ethnic background'),
+        (OPTION_9, 'Asian - Indian'),
+        (OPTION_10, 'Asian - Pakistani'),
+        (OPTION_11, 'Asian - Bangladeshi'),
+        (OPTION_12, 'Asian - Chinese'),
+        (OPTION_13, 'Asian - Any other Asian background'),
+        (OPTION_14, 'Black - African'),
+        (OPTION_15, 'Black - Caribbean'),
+        (OPTION_16, 'Black - Any other Black/African/Caribbean background'),
+        (OPTION_17, 'Arab'),
+        (OPTION_18, 'Any other ethnic group'),
+
     ]
 
     yp_first_name = models.CharField(max_length=100)
@@ -705,7 +730,7 @@ class YP_General_Information(models.Model):
     yp_ethnicity = models.CharField(
         max_length=100,
         choices=ETHNICITY,
-        default=WHITE_EUROPEAN,
+        default=OPTION_1,
     )
     yp_nationality = models.CharField(
         max_length=100,
