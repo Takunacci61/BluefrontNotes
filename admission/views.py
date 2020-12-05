@@ -14,56 +14,55 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 
-from .forms import YP_General_InformationForm, Local_AuthorityForm, ProfileUpdateForm
-from .models import YP_General_Information, Local_Authority
-
+from .forms import YP_General_InformationForm, Local_AuthorityForm, ProfileUpdateForm, Care_House_InfomationForm
+from .models import YP_General_Information, Local_Authority, Care_House_Infomation
 
 
 def home(request):
-    return render(request, 'admission/dashboard.html', {'title': 'Bluefront Care | Dashboard'})
+    return render (request, 'admission/dashboard.html', {'title': 'Bluefront Care | Dashboard'})
 
 
 def admissions(request):
     context = {
-        'young_person_info': YP_General_Information.objects.select_related('profile')
+        'young_person_info': YP_General_Information.objects.select_related ('profile')
 
     }
 
-    return render(request, 'admission/home.html', context)
+    return render (request, 'admission/home.html', context)
 
 
 def young_person_local_authority_view(request, pk):
-    yp_local_authority_details = YP_General_Information.objects.select_related('local_authority')
-    return render(request, 'admission/yp_local_authority_details.html',
+    yp_local_authority_details = YP_General_Information.objects.select_related ('local_authority')
+    return render (request, 'admission/yp_local_authority_details.html',
                    {'yp_local_authority_details': yp_local_authority_details})
 
 
 def profile(request):
     if request.method == 'POST':
-        u_form = YP_General_InformationForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
-                                   request.FILES,
-                                   instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request, f'Your account has been updated!')
-            return redirect('profile')
+        u_form = YP_General_InformationForm (request.POST, instance=request.user)
+        p_form = ProfileUpdateForm (request.POST,
+                                    request.FILES,
+                                    instance=request.user.profile)
+        if u_form.is_valid () and p_form.is_valid ():
+            u_form.save ()
+            p_form.save ()
+            messages.success (request, f'Your account has been updated!')
+            return redirect ('profile')
 
     else:
-        u_form = YP_General_InformationForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        u_form = YP_General_InformationForm (instance=request.user)
+        p_form = ProfileUpdateForm (instance=request.user.profile)
 
     context = {
         'u_form': u_form,
         'p_form': p_form
     }
 
-    return render(request, 'users/profile.html', context)
+    return render (request, 'users/profile.html', context)
 
 
-class ChildListView(ListView):
-    queryset = YP_General_Information.objects.select_related('profile')
+class ChildListView (ListView):
+    queryset = YP_General_Information.objects.select_related ('profile')
     template_name = 'admission/all_placements.html'
     context_object_name = 'young_person_info'
     ordering = ['-yp_date_added']
@@ -81,7 +80,7 @@ class ChildCreateView (LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.staff = self.request.user
-        return super().form_valid (form)
+        return super ().form_valid (form)
 
 
 class ChildUpdateView (LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -91,10 +90,10 @@ class ChildUpdateView (LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.staff = self.request.user
-        return super().form_valid(form)
+        return super ().form_valid (form)
 
     def test_func(self):
-        YP_General_Information = self.get_object()
+        YP_General_Information = self.get_object ()
         if self.request.user == YP_General_Information.staff:
             return True
         return False
@@ -106,7 +105,7 @@ class ChildDeleteView (LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'admission/admission_confirm_delete.html'
 
     def test_func(self):
-        YP_General_Information = self.get_object()
+        YP_General_Information = self.get_object ()
         if self.request.user == YP_General_Information.staff:
             return True
         return False
@@ -135,3 +134,28 @@ class AuthorityListView (LoginRequiredMixin, ListView):
     model = Local_Authority
     context_object_name = 'local_authority_list'
     template_name = 'admission/local_authority_list.html'
+
+# Placement Home
+
+
+class CareHomeCreateView (LoginRequiredMixin, CreateView):
+    model = Care_House_Infomation
+    form_class = Care_House_InfomationForm
+    template_name = 'admission/new_care_home.html'
+
+
+class CareHomeUpdateView (LoginRequiredMixin, UpdateView):
+    model = Care_House_Infomation
+    form_class = Care_House_InfomationForm
+    template_name = 'admission/new_care_home.html'
+
+
+class CareHomeDetailView (LoginRequiredMixin, DetailView):
+    model = Care_House_Infomation
+    template_name = 'admission/home_details.html'
+
+
+class CareHomeListView (LoginRequiredMixin, ListView):
+    model = Care_House_Infomation
+    context_object_name = 'home_list_info'
+    template_name = 'admission/home_list.html'

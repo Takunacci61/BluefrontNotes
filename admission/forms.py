@@ -1,5 +1,5 @@
 from django import forms
-from .models import YP_General_Information, Local_Authority, Profile
+from .models import YP_General_Information, Local_Authority, Profile, Care_House_Infomation
 
 
 class YP_General_InformationForm(forms.ModelForm):
@@ -57,7 +57,7 @@ class Local_AuthorityForm(forms.ModelForm):
 
         widgets = {
             'authority_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'postcode': forms.TextInput (attrs={'class': 'form-control'}),
+            'postcode': forms.TextInput(attrs={'class': 'form-control'}),
             'authority_address': forms.TextInput(attrs={'class': 'form-control'}),
             'authority_email': forms.TextInput(attrs={'class': 'form-control'}),
             'authority_phone': forms.TextInput(attrs={'class': 'form-control'})
@@ -77,3 +77,38 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+
+class Care_House_InfomationForm(forms.ModelForm):
+
+    class Meta:
+        model = Care_House_Infomation
+        fields = ['house_name', 'location_id', 'house_address_one', 'house_address_two', 'house_type_of_accommodation', 'number_of_beds',
+                  'number_of_bathrooms', 'postcode', 'house_number']
+
+        widgets = {
+            'house_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'location_id': forms.TextInput(attrs={'class': 'form-control'}),
+            'house_address_one': forms.TextInput(attrs={'class': 'form-control'}),
+            'house_address_two': forms.TextInput(attrs={'class': 'form-control', 'required':False}),
+            'number_of_beds': forms.Select(attrs={'class': 'form-control'}),
+            'number_of_bathrooms': forms.Select(attrs={'class': 'form-control'}),
+            'house_type_of_accommodation': forms.Select(attrs={'class': 'form-control'}),
+            'postcode': forms.TextInput(attrs={'class': 'form-control'}),
+            'house_number': forms.NumberInput(attrs={'class': 'form-control', 'required': False}),
+            'house_email': forms.EmailInput(attrs={'class': 'form-control', 'required': False, }),
+
+        }
+
+        labels = {
+            'house_name': 'House Name',
+            'house_address_one': 'Address 1',
+            'house_address_two': 'Address 2 (Optional)',
+            'location_id': 'Town',
+            'postcode': 'Postcode',
+            'house_number': 'House Contact Number',
+            'house_email': 'House Email',
+            'number_of_beds': 'Number of Beds',
+            'number_of_bathrooms': 'Number of Bathrooms',
+            'house_type_of_accommodation': 'Type of House'
+        }

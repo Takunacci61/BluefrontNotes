@@ -1,8 +1,7 @@
 {% extends "notes/base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
 	<!-- Breadcomb area Start-->
 	<div class="breadcomb-area">
 		<div class="container">
@@ -16,8 +15,8 @@
 										<i class="notika-icon notika-form"></i>
 									</div>
 									<div class="breadcomb-ctn">
-										<h2>New House</h2>
-										<p>Adding Care<span class="bread-ntd">House</span></p>
+										<h2>Listed House Details</h2>
+										<p>This Panel shows <span class="bread-ntd">Details on the particular House</span></p>
 									</div>
 								</div>
 							</div>
@@ -34,31 +33,32 @@
 	</div>
     <!-- Breadcomb area End-->
 
-    <!-- Form Examples area start-->
-    <div class="form-example-area">
+
+    <div class="typography-area">
         <div class="container">
-            <div class="row">
+           <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="tpgp-helper mg-t-30">
+                        <div class="tpgp-hp-hd typography-mgn">
+                            <h2 class="mn-hd-s"><i class="notika-icon notika-house"></i> {{object.house_name}}</h2>
+                        </div>
+                            <div class="tpgp-al-cl">
+                            <blockquote>
+                                <p><b>Physical Address:</b>Address 1:  {{object.house_address_one}}  &ensp; Address 2 : {{objecthouse_address_two}}  </p>
+                                <p><b>Location:</b> {{object.location_id}}</p>
+                                <p><b>Type of Accommodation:</b> {{object.house_type_of_accommodation}}</p>
+                            </blockquote>
+                            <blockquote class="blockquote-reverse m-b-25">
 
-
-        <form method="POST" class="form-example-wrap">
-
-            {% csrf_token %}
-            <div class="form-example-int mg-t-15">
-                 <div class="form-group">
-                {{ form|crispy }}
-             </div>
-            </div>
-
-            <div class="form-example-int mg-t-15">
-                <button class="btn btn-primary notika-btn-success" type="submit">Save</button>
-            </div>
-        </form>
+                                <footer>Added On  <cite title="Source Title">{{ object.date_added|date:"F d, Y" }}</cite></footer>
+                            </blockquote>
                         </div>
                     </div>
                 </div>
             </div>
 
+        </div>
+            </div>
 {% else %}
     <h2>You have been logged out</h2>
     <div class="border-top pt-3">
@@ -67,6 +67,4 @@
         </small>
     </div>
     {% endif %}
-    <!-- Form Examples area End-->
 {% endblock content %}
-

@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     ChildListView, ChildDetailView, ChildCreateView, ChildUpdateView, ChildDeleteView,
     AuthorityCreateView, AuthorityListView, AuthorityDetailView, AuthorityUpdateView,
+    CareHomeCreateView, CareHomeUpdateView, CareHomeDetailView, CareHomeListView,
 
 )
 from . import views
@@ -23,6 +24,13 @@ urlpatterns = [
     path('authority/list/', AuthorityListView.as_view(), name='authority-list'),
     path('authority/<int:pk>/update/', AuthorityUpdateView.as_view(), name='authority-update'),
     path('authority/<int:pk>/detail/', AuthorityDetailView.as_view(), name='authority-detail'),
+
+    # Placement home
+    # Care Home House
+    path ('home/new/', CareHomeCreateView.as_view (), name='home-create'),
+    path ('home/<int:pk>/detail/', CareHomeDetailView.as_view (), name='home-detail'),
+    path ('home/list/', CareHomeListView.as_view (), name='home-list'),
+    path ('home/<int:pk>update/', CareHomeUpdateView.as_view (), name='home-update'),
 
 
 ]

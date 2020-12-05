@@ -222,7 +222,7 @@
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li class="active"><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
-                        <li><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-ip-locator"></i> Placements</a>
+                        <li><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-ip-locator"></i> YP Hub</a>
                         </li>
                         <li><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Local Authority</a>
                         </li>
@@ -263,9 +263,9 @@
                         </div>
                         <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="#">Add House</a>
+                                <li><a href="{% url  'home-create' %}">Add House</a>
                                 </li>
-                                <li><a href="#">House List</a>
+                                <li><a href="{% url  'home-list' %}">House List</a>
                                 </li>
 
                             </ul>

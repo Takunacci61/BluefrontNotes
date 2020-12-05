@@ -791,3 +791,84 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class Care_House_Infomation (models.Model):
+
+    OPTION_1 = 'Detached'
+    OPTION_2 = 'Semi-Detached'
+    OPTION_3 = 'Terraced'
+    OPTION_4 = 'End of Terrace'
+    OPTION_5 = 'Flat'
+    OPTION_6 = 'Studio Flat'
+    OPTION_7 = 'Split-Level Flat'
+    OPTION_8 = 'Converted Flat'
+    OPTION_9 = 'Maisonette'
+    OPTION_10 = 'Cottage'
+    OPTION_11 = 'Bungalow'
+    OPTION_12 = 'Mansion'
+
+    OPTN_1 = 1
+    OPTN_2 = 2
+    OPTN_3 = 3
+    OPTN_4 = 4
+    OPTN_5 = 5
+    OPTN_6 = 6
+    OPTN_7 = 7
+    OPTN_8 = 8
+    OPTN_9 = 9
+    OPTN_10 = 10
+    OPTN_11 = 11
+    OPTN_12 = 12
+
+    PLACEMENT_CHOICES = [
+        (OPTION_1, 'Detached'),
+        (OPTION_2, 'Semi-Detached'),
+        (OPTION_3, 'Terraced'),
+        (OPTION_4, 'End of Terrace'),
+        (OPTION_5, 'Flat'),
+        (OPTION_6, 'Studio Flat'),
+        (OPTION_7, 'Split-Level Flat'),
+        (OPTION_8, 'Converted Flat'),
+        (OPTION_9, 'Maisonette'),
+        (OPTION_10, 'Cottage'),
+        (OPTION_11, 'Bungalow'),
+        (OPTION_12, 'Mansion'),
+
+    ]
+
+    NUMBER_CHOICES = [
+        (OPTN_1, 1),
+        (OPTN_2, 2),
+        (OPTN_3, 3),
+        (OPTN_4, 4),
+        (OPTN_5, 5),
+        (OPTN_6, 6),
+        (OPTN_7, 7),
+        (OPTN_8, 8),
+        (OPTN_9, 9),
+        (OPTN_10, 10),
+        (OPTN_11, 11),
+        (OPTN_12, 12),
+    ]
+
+    house_name = models.CharField(max_length=100)
+    location_id = models.CharField(max_length=100)
+    house_address_one = models.CharField(max_length=100)
+    house_address_two = models.CharField(max_length=100, default='')
+    postcode = models.CharField(max_length=100)
+    house_number = models.IntegerField(default=0)
+    house_email = models.EmailField(max_length=254, default='')
+    number_of_beds = models.IntegerField(choices=NUMBER_CHOICES, default=OPTN_1)
+    number_of_bathrooms = models.IntegerField(choices=NUMBER_CHOICES, default=OPTN_1)
+    house_type_of_accommodation = models.CharField(max_length=50, choices=PLACEMENT_CHOICES)
+    date_added = models.DateTimeField (default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = "Care House Information"
+
+    def __str__(self):
+        return self.house_name
+
+    def get_absolute_url(self):
+        return reverse('home-detail', kwargs={'pk': self.pk})
