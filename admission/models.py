@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.datetime_safe import date
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 from PIL import Image
 # Create your models here.
 
@@ -872,3 +873,218 @@ class Care_House_Infomation (models.Model):
 
     def get_absolute_url(self):
         return reverse('home-detail', kwargs={'pk': self.pk})
+
+
+class YP_Contact_Info(models.Model):
+    YES = 'Yes'
+    NO = 'No'
+    BOOLEAN_CHOICES = [
+        (YES, 'Yes'),
+        (NO, 'No'),
+
+    ]
+
+    yp = models.OneToOneField(YP_General_Information, on_delete=models.CASCADE)
+    mobile_number = models.IntegerField(default=0)
+    travel_card = models.CharField(
+        max_length=10,
+        choices=BOOLEAN_CHOICES,
+        default=NO,
+    )
+    email_address = models.CharField(max_length=100)
+    facebook = models.CharField(max_length=100)
+    twitter = models.CharField(max_length=100)
+    snapchat = models.CharField(max_length=100)
+    instagram = models.CharField(max_length=100)
+    other = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Young Person Contact Information"
+
+    def __str__(self):
+        return f'{self.yp}'
+
+    def save(self, *args, **kwargs):
+        super(YP_Contact_Info, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('contact-detail', kwargs={'pk': self.pk})
+
+
+class YP_Health_And_Wellness (models.Model):
+    yp = models.OneToOneField(YP_General_Information, on_delete=models.CASCADE)
+    yp_ability_to_make_attachments = RichTextField(blank=True, null=True)
+    yp_food_allergies = RichTextField(blank=True, null=True)
+    yp_allergies_and_attitudes = RichTextField(blank=True, null=True)
+    yp_resilience_and_self_esteem = RichTextField(blank=True, null=True)
+    yp_substance_misuse_issues = RichTextField(blank=True, null=True)
+    yp_sexual_health = RichTextField(blank=True, null=True)
+    yp_Attitude_To_Food_And_Weight = RichTextField(blank=True, null=True)
+    yp_smoking = RichTextField(blank=True, null=True)
+    yp_personal_hygiene = RichTextField(blank=True, null=True)
+    yp_learning_difficulties = RichTextField(blank=True, null=True)
+    yp_physical_or_sensory_impairments_and_disabilities = RichTextField(blank=True, null=True)
+    yp_healthcare_professional_involvement = RichTextField(blank=True, null=True)
+    yp_date_added = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = "Young Person Health and Wellness"
+
+    def __str__(self):
+        return f'{self.yp} Health and Wellness'
+
+    def save(self, *args, **kwargs):
+        super(YP_Health_And_Wellness, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('health-detail', kwargs={'pk': self.pk})
+
+
+# Updates that need to be worked on
+
+class YP_Banking_Information (models.Model):
+    yp = models.OneToOneField(YP_General_Information, on_delete=models.CASCADE)
+    yp_bank = models.CharField(max_length=100)
+    yp_bank_name = models.CharField(max_length=100)
+    yp_bank_sort_code = models.IntegerField(default=0)
+    yp_bank_account_number = models.IntegerField(default=0)
+    yp_date_added = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = "Young Person Banking Information"
+
+    def __str__(self):
+        return f'{self.yp} Banking Details'
+
+    def save(self, *args, **kwargs):
+        super(YP_Banking_Information, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('bank-detail', kwargs={'pk': self.pk})
+
+
+class YP_Physical_Description(models.Model):
+
+    FAT = 'Fat'
+    STOCKY = 'Stocky'
+    PROP = 'Prop'
+    THIN = 'Thin'
+    SLIGHT = 'Slight'
+    HEAVY = 'Heavy'
+    BROAD = 'Broad'
+    MEDIUM = 'Medium'
+    SLIM = 'Slim'
+    SMALL = 'Small'
+
+    BUILD = [
+        (FAT, 'Fat'),
+        (STOCKY, 'Stocky'),
+        (PROP, 'Prop'),
+        (THIN, 'Thin'),
+        (SLIGHT, 'Slight'),
+        (HEAVY, 'Heavy'),
+        (BROAD, 'Broad'),
+        (MEDIUM, 'Medium'),
+        (SLIM, 'Slim'),
+        (SMALL, 'Small'),
+
+    ]
+
+    yp = models.OneToOneField(YP_General_Information, on_delete=models.CASCADE)
+    yp_height = models.IntegerField(default=0)
+    yp_weight = models.IntegerField(default=0)
+    yp_build = models.CharField(
+        max_length=10,
+        choices=BUILD,
+        default=SLIM,
+    )
+    yp_complexion = models.CharField(max_length=100)
+    yp_eye_colour = models.CharField(max_length=100)
+    yp_hair_colour = models.CharField(max_length=100)
+    yp_marks_scars_tattoos = models.CharField(max_length=100)
+    yp_disabilities = models.CharField(max_length=100)
+    yp_relevant_medical_information = RichTextField(blank=True, null=True)
+    yp_medications = RichTextField(blank=True, null=True)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    yp_date_added = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = "Young Person Physical Description"
+
+    def __str__(self):
+        return f'{self.yp} Physical Description'
+
+    def save(self, *args, **kwargs):
+        super(YP_Physical_Description, self).save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
+    def get_absolute_url(self):
+        return reverse('physical-detail', kwargs={'pk': self.pk})
+
+
+class YP_IPA (models.Model):
+    yp = models.ForeignKey(YP_General_Information, related_name="ipa", on_delete=models.CASCADE)
+    yp_placement_start_date = models.DateField(default=date.today)
+    yp_initial_ipa_received_date = models.DateField(default=date.today)
+    yp_last_ipa_start_date = models.DateField(default=date.today)
+    yp_proposed_placement_end_date = models.DateField(default=date.today)
+    staff = models.ForeignKey(User, on_delete=models.CASCADE)
+    yp_type_placement = models.CharField(max_length=100)
+    yp_date_added = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = "Young Person IPA"
+
+    def __str__(self):
+        return f'{self.yp} IPA Information'
+
+    def save(self, *args, **kwargs):
+        super(YP_IPA, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('ipa-list', kwargs={'pk': self.pk})
+
+
+class YP_Pen_Pic(models.Model):
+    yp = models.OneToOneField(YP_General_Information, on_delete=models.CASCADE)
+    yp_pen_picture = RichTextField(blank=True, null=True)
+    yp_pen_picture_background = RichTextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Young Person Pen Picture"
+
+    def __str__(self):
+        return f'{self.yp}'
+
+    def save(self, *args, **kwargs):
+        super(YP_Pen_Pic, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('pen-detail', kwargs={'pk': self.pk})
+
+
+class YP_Profile_Child (models.Model):
+    yp = models.OneToOneField(YP_General_Information, on_delete=models.CASCADE)
+    yp_streghts = RichTextField(blank=True, null=True)
+    yp_achivements = RichTextField(blank=True, null=True)
+    yp_hobbies = RichTextField(blank=True, null=True)
+    personality = RichTextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Young Person Contact Information"
+
+    def __str__(self):
+        return f'{self.yp}'
+
+    def save(self, *args, **kwargs):
+        super(YP_Profile_Child, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('profile-detail', kwargs={'pk': self.pk})
+

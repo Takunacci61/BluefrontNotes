@@ -14,8 +14,8 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 
-from .forms import YP_General_InformationForm, Local_AuthorityForm, ProfileUpdateForm, Care_House_InfomationForm
-from .models import YP_General_Information, Local_Authority, Care_House_Infomation
+from .forms import YP_General_InformationForm, Local_AuthorityForm, ProfileUpdateForm, Care_House_InfomationForm, Contact_Social_DetailsForm
+from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info
 
 
 def home(request):
@@ -159,3 +159,16 @@ class CareHomeListView (LoginRequiredMixin, ListView):
     model = Care_House_Infomation
     context_object_name = 'home_list_info'
     template_name = 'admission/home_list.html'
+
+
+# Contact and Social
+
+class Contact_SocialDetailsView (DetailView):
+    model = YP_Contact_Info
+
+
+class Contact_SocialUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_Contact_Info
+    form_class = Contact_Social_DetailsForm
+
+

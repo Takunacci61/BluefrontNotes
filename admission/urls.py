@@ -3,6 +3,7 @@ from .views import (
     ChildListView, ChildDetailView, ChildCreateView, ChildUpdateView, ChildDeleteView,
     AuthorityCreateView, AuthorityListView, AuthorityDetailView, AuthorityUpdateView,
     CareHomeCreateView, CareHomeUpdateView, CareHomeDetailView, CareHomeListView,
+    Contact_SocialDetailsView, Contact_SocialUpdateView,
 
 )
 from . import views
@@ -31,6 +32,10 @@ urlpatterns = [
     path ('home/<int:pk>/detail/', CareHomeDetailView.as_view (), name='home-detail'),
     path ('home/list/', CareHomeListView.as_view (), name='home-list'),
     path ('home/<int:pk>update/', CareHomeUpdateView.as_view (), name='home-update'),
+
+    # Young Person Contacts
+    path ('contact/<int:pk>/view/', Contact_SocialDetailsView.as_view (), name='contact-detail'),
+    path ('contact/<int:pk>/update/', Contact_SocialUpdateView.as_view (), name='contact-update'),
 
 
 ]

@@ -1,0 +1,146 @@
+{% extends "notes/base.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-form"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Local Authority Details</h2>
+										<p>This Panel shows <span class="bread-ntd">Local Authority Details</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Breadcomb area End-->
+
+
+                    <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                         <div class="hpanel email-compose mailbox-view">
+
+
+                                <hr>
+
+
+                                  <div class="panel-heading hbuilt">
+
+                                <div class="p-xs h4">
+                                    <small class="pull-right view-hd-ml">
+										Young Person : {{ object.yp }}
+										</small>
+
+                                </div>
+                            </div>
+
+                                               <div class="row mg-b-15">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="skill-title">
+                                                                    <h2>Young Person Contact Infomation</h2>
+                                                                    <hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                     <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b>Contact Number</b><br />{{ object.mobile_number}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b>Email Address </b><br />{{ object.email_address}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b>Travel Card</b><br /> {{ object.travel_card}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b></b><br /></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                             <hr>
+
+                            <div class="row mg-b-15">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="skill-title">
+                                                                    <h5>Social Media Accounts</h5>
+                                                                    <hr />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                         <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b><i class="fa fa-facebook"></i> Facebook</b><br />{{ object.facebook}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b><i class="fa fa-twitter"></i> Twitter</b><br />{{ object.twitter}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b><i class="fa fa-snapchat"></i> SnapChat</b><br />{{ object.snapchat }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                        <div class="address-hr biography">
+                                                            <p><b><i class="fa fa-instagram"></i> Instagram</b><br />{{ object.instagram}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+
+
+
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}

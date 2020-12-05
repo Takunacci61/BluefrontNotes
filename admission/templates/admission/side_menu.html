@@ -5,13 +5,13 @@
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="inbox-left-sd">
 						<div class="compose-ml">
-                           <img src="{% static 'img/cropper/1.jpg'%}" alt="">
+                           <img src="{{ object.profile.image.url }}" alt="">
                         </div>
                         <hr>
                         <div class="inbox-status">
                             <ul class="inbox-st-nav inbox-ft">
-                                <li><a href="{% url 'child-detail' object.id %}"><i class="notika-icon notika-mail"></i> Personal Details</a></li>
-                                <li><a href="#"><i class="notika-icon notika-sent"></i> Contact Details</a></li>
+                                <li><a href="{% url 'child-detail' object.id %}"><i class="notika-icon notika-support"></i> Personal Details</a></li>
+                                <li><a href="{% url 'contact-detail' object.id %}"><i class="notika-icon notika-phone"></i> Contact Details</a></li>
                                 <li><a href="#"><i class="notika-icon notika-draft"></i> Physical Description</a></li>
                                 <li><a href="#"><i class="notika-icon notika-trash"></i> Health/Wellness</a></li>
                             </ul>
