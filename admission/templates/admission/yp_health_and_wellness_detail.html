@@ -1,0 +1,180 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>{{ object.yp }}</h2>
+                                        <p>Young Person's General Information <span class="bread-ntd"><b>captured into the system</b></span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+
+    <!-- Inbox area Start-->
+    <div class="inbox-area">
+        <div class="container">
+
+                {% include "admission/side_menu.html" %}
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+             <div class="inbox-text-list sm-res-mg-t-30">
+                        <div class="inbox-btn-st-ls btn-toolbar">
+                            <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-refresh"></i> Refresh</button>
+                                <a href="{% url  'health-update' object.id %}" class="btn btn-default btn-sm"><i class="notika-icon notika-edit"></i> Edit</a>
+
+            <!---Test Model --->
+
+                            </div>
+                            <div class="btn-group ib-btn-gp active-hook nk-act nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-left-arrow"></i></button>
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-right-arrow"></i></button>
+                            </div>
+                        </div><hr>
+                 <div class="row">
+                    <div class="typography-heading typography-mgn mg-t-10">
+                        <div class="typography-hd-cr-5">
+                                  <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Ability To Make Attachments </h5>
+                                {{object.yp_ability_to_make_attachments |safe}}
+                                </div>
+                            </div>
+<hr>
+                               <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Food Allergies</h5>
+                                {{object.yp_food_allergies|safe}}
+                                </div>
+                            </div>
+                                                <hr>
+
+                                <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Allergies and Attitudes</h5>
+                                {{object.yp_allergies_and_attitudes|safe}}
+                                </div>
+                            </div>
+                                                <hr>
+
+                                <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Resilience And Self Esteem</h5>
+                                {{object.yp_resilience_and_self_esteem|safe}}
+                                </div>
+                            </div>
+                                                <hr>
+
+                                <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Substance Misuse Issues</h5>
+                                {{object.yp_substance_misuse_issues|safe}}
+                                </div>
+                            </div>
+                               <hr>
+
+                                <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Sexual Health</h5>
+                                {{object.yp_sexual_health|safe}}
+                                </div>
+                            </div>
+                               <hr>
+
+                               <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Attitude To Food And Weight</h5>
+                                {{object.yp_Attitude_To_Food_And_Weight|safe}}
+                                </div>
+                            </div>
+                               <hr>
+
+                               <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Smoking</h5>
+                                {{object.yp_smoking |safe}}
+                                </div>
+                            </div>
+                               <hr>
+
+                               <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Personal Hygiene</h5>
+                                {{object.yp_personal_hygiene|safe}}
+                                </div>
+                            </div>
+                               <hr>
+                          <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Learning Difficulties</h5>
+                                {{object.yp_learning_difficulties|safe}}
+                                </div>
+                            </div>
+                               <hr>
+
+                             <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Physical Or Sensory Impairments and Disabilities</h5>
+                                {{object.yp_physical_or_sensory_impairments_and_disabilities|safe}}
+                                </div>
+                            </div>
+                               <hr>
+
+                                      <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Physical Or Sensory Impairments and Disabilities</h5>
+                                {{object.yp_physical_or_sensory_impairments_and_disabilities|safe}}
+                                </div>
+                            </div>
+                               <hr>
+                         <div class="panel-body panel-csm">
+                                <div>
+                                    <h5>Health Care Professional Involvement</h5>
+                                {{object.yp_healthcare_professional_involvement|safe}}
+                                </div>
+                            </div>
+                               <hr>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Inbox area End-->
+
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,96 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-support"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>{{ object.yp}}</h2>
+                                        <p>Childs Profile <span class="bread-ntd"><b>captured into the system</b></span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcomb area End-->
+
+        <!-- Typography area start-->
+    <div class="typography-area">
+        <div class="container">
+            <div class="row">
+                  {% include "admission/side_menu.html" %}
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                           <div class="inbox-btn-st-ls btn-toolbar">
+                            <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-refresh"></i> Refresh</button>
+                                <a href="{% url  'profile-update' object.id %}" class="btn btn-default btn-sm"><i class="notika-icon notika-edit"></i> Edit</a>
+
+            <!---Test Model --->
+
+                            </div>
+                            <div class="btn-group ib-btn-gp active-hook nk-act nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-left-arrow"></i></button>
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-right-arrow"></i></button>
+                            </div>
+                        </div><hr>
+                    <div class="typography-list typography-mgn">
+                        <h2>Pen Picture and Background</h2>
+                        <div class="typography-bd">
+                            <h3>Strengths</h3>
+
+                            <p class="tab-mg-b-0">{{object.yp_streghts|safe}} </p>
+
+                        <div class="typography-bd">
+                            <h3>Achievements</h3>
+                   <p class="tab-mg-b-0">{{object.yp_achivements|safe}} </p>
+                        </div>
+
+                     <div class="typography-bd">
+                            <h3>Hobbies</h3>
+                            <p class="tab-mg-b-0">{{object.yp_hobbies|safe}} </p>
+                        </div>
+
+                        <div class="typography-bd">
+                            <h3>Personality</h3>
+                            <p class="tab-mg-b-0">{{object.personality|safe}} </p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+                            </div>
+                        </div>
+
+    <!-- Typography area End-->
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}

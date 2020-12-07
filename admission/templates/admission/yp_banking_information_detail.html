@@ -1,0 +1,85 @@
+{% extends "notes/base.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+	<!-- Breadcomb area Start-->
+	<div class="breadcomb-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="breadcomb-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="breadcomb-wp">
+									<div class="breadcomb-icon">
+										<i class="notika-icon notika-form"></i>
+									</div>
+									<div class="breadcomb-ctn">
+										<h2>Banking Information</h2>
+										<p>Banking Information for <span class="bread-ntd"><b>{{ object.yp }}</b></span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+								<div class="breadcomb-report">
+									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Breadcomb area End-->
+
+
+    <div class="typography-area">
+        <div class="container">
+           <div class="row">
+{% include "admission/side_menu.html" %}
+<!---The content starts here --->
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="tpgp-helper mg-t-30">
+
+                          <div class="inbox-btn-st-ls btn-toolbar">
+                            <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
+                                <a href="{% url  'bank-detail' object.id %}"class="btn btn-default btn-sm"><i class="notika-icon notika-refresh"></i> Refresh</a>
+                                <a href="{% url  'bank-update' object.id %}" class="btn btn-default btn-sm"><i class="notika-icon notika-edit"></i> Edit</a>
+
+                            </div>
+                            <div class="btn-group ib-btn-gp active-hook nk-act nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-left-arrow"></i></button>
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-right-arrow"></i></button>
+                            </div>
+                        </div><hr>
+                        <div class="tpgp-hp-hd typography-mgn">
+                            <h2 class="mn-hd-s"><i class="notika-icon notika-credit-card"></i> {{object.house_name}}</h2>
+                        </div>
+                            <div class="tpgp-al-cl">
+                            <blockquote>
+                                <p><b>Bank Availability: </b>{{ object.yp_bank}}</p><hr>
+                                <p><b>Bank Name:</b> {{ object.yp_bank_name}}</p><hr>
+                                <p><b>Bank Sort Code:</b> {{ object.yp_bank_sort_code}}</p><hr>
+                                <p><b>Bank Account Number:</b> {{ object.yp_bank_account_number}}</p><hr>
+                            </blockquote>
+                            <blockquote class="blockquote-reverse m-b-25">
+
+                                <footer>Added On  <cite title="Source Title">{{ object.yp_date_added|date:"F d, Y" }}</cite></footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            </div>
+{% else %}
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    {% endif %}
+{% endblock content %}

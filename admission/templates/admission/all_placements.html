@@ -4,16 +4,6 @@
 {% block content %}
     {% if user.is_authenticated %}
 
-       <style>
-
-       .contact-area .row {
-    margin-bottom: 20px;
-}
-
-     .contact-area .row:last-child {
-    margin-bottom: 0;
-    }
-       </style>
 
 	<!-- Breadcomb area Start-->
 	<div class="breadcomb-area">
@@ -60,11 +50,11 @@
                  <div class="contact-list sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
                     <div class="contact-list">
                         <div class="contact-win">
-                            <div class="contact-img">
-                                <img src="{{yp.profile.image.url}}" alt="" />
+                            <div class="widget-signup-list">
+                                <a class="signup-wd-mn"  data-toggle="tooltip" data-placement="top" title="{{ yp.yp_first_name}} - {{ yp.yp_surname}}" href="#">{{ yp.yp_first_name|make_list|first}}{{ yp.yp_surname|make_list|first}}</a>
                             </div>
                             <div class="conct-sc-ic">
-                                <a class="btn" data-toggle="tooltip"  data-placement="left" title="View Profile" href="{% url 'child-detail' yp.id %}"><i class="notika-icon notika-ip-locator"></i></a>
+                                <a class="btn" data-toggle="tooltip"  data-placement="left" title="View Profile" href="{% url 'child-detail' yp.id %}"><i class="notika-icon notika-eye"></i></a>
                                 <a class="btn" data-toggle="tooltip"  data-placement="left" title="Add Notes" href="{% url 'notes-create' yp.id  %}"><i class="notika-icon notika-form"></i></a>
                                 <a class="btn" data-toggle="tooltip"  data-placement="left" title="View Notes"  href="{% url 'notes-list' yp.id  %}"><i class="notika-icon notika-chat"></i></a>
                             </div>
@@ -89,22 +79,12 @@
             </div>
        {% if not forloop.last %}
           <div class="row">
-        {% endif %}
+       {% endif %}
        {% endif %}
     {% if forloop.last %}
          </div>
     {% endif %}
-
     {% endfor %}
-
-
-
-
-
-
-
-
-
 
         </div>
     </div>

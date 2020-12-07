@@ -15,8 +15,8 @@
 										<i class="notika-icon notika-support"></i>
 									</div>
 									<div class="breadcomb-ctn">
-										<h2>{{ object.yp_first_name }} &nbsp;{{object.yp_surname }}</h2>
-                                        <p>Young Person's General Information <span class="bread-ntd"><b>captured into the system</b></span></p>
+										<h2>{{ object.yp}}</h2>
+                                        <p>Young Person's Physical Descriptions <span class="bread-ntd"><b>captured into the system</b></span></p>
 									</div>
 								</div>
 							</div>
@@ -46,11 +46,9 @@
                         <div class="inbox-btn-st-ls btn-toolbar">
                             <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
                                 <button class="btn btn-default btn-sm"><i class="notika-icon notika-refresh"></i> Refresh</button>
-                                <a href="{% url  'child-update' object.id %}" class="btn btn-default btn-sm"><i class="notika-icon notika-edit"></i> Edit</a>
+                                <a href="{% url  'physical-update' object.id %}" class="btn btn-default btn-sm"><i class="notika-icon notika-edit"></i> Edit</a>
 
             <!---Test Model --->
-                                <a href="{% url  'child-delete' object.id %}" id="sa-warning" class="btn btn-default btn-sm"><i class="notika-icon notika-trash"></i> Delete</a>
-           <!---Test Model --->
 
                             </div>
                             <div class="btn-group ib-btn-gp active-hook nk-act nk-email-inbox">
@@ -61,20 +59,20 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Full Name</h2>
-                                    <p>{{ object.yp_first_name }}  &nbsp; {{object.yp_surname }}</p>
+                                    <h2>Height (cm)</h2>
+                                    <p>{{ object.yp_height}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Assigned ID</h2>
-                                    <p>{{ object.yp_assigned_id }}</p>
+                                    <h2>Weight (kg)</h2>
+                                    <p>{{ object.yp_weight}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Nickname/Street Name</h2>
-                                    <p>{{ object.yp_nickname }}</p>
+                                    <h2>Built</h2>
+                                    <p>{{ object.yp_build}}</p>
                                 </div>
 
                             </div>
@@ -82,66 +80,54 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Previous Name (If Any)</h2>
-                                    <p>{{ object.yp_previous_name }}</p>
+                                    <h2>Complexion</h2>
+                                    <p>{{ object.yp_complexion}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Ethnicity</h2>
-                                    <p>{{ object.yp_ethnicity}}</p>
+                                    <h2>Eye Color</h2>
+                                    <p>{{ object.yp_eye_colour}}</p>
                                 </div>
                             </div>
 
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Nationality</h2>
-                                    <p>{{ object.yp_nationality}}</p>
+                                    <h2>Hair Color</h2>
+                                    <p>{{ object.yp_hair_colour}}</p>
                                 </div>
                             </div>
                         </div><hr>
                     <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Country of Origin </h2>
-                                    <p>{{ object.yp_country_origin }}</p>
+                                    <h2>Marks Scars Tattoo</h2>
+                                    <p>{{ object.yp_marks_scars_tattoos }}</p>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Date of Birth</h2>
-                                    <p>{{ object.yp_date_of_birth|date:"F d, Y" }}</p>
+                                    <h2>Disabilities</h2>
+                                    <p>{{ object.yp_disabilities}}</p>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div class="tpgp-ele-tx">
-                                    <h2>First Language</h2>
-                                    <p>{{ object.yp_first_language}}</p>
-                                </div>
 
-                            </div>
                         </div><hr>
 
                               <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Other Spoken Languages</h2>
-                                    <p>{{ object.yp_other_spoken_languages}}</p>
+                                    <h2>Relevant Medical Information</h2>
+                                    <p>{{ object.yp_relevant_medical_information|safe}}</p>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="tpgp-ele-tx">
-                                    <h2>Status</h2>
-                                    <p>{{ object.yp_status}}</p>
+                                    <h2>Medications</h2>
+                                    <p>{{ object.yp_medications|safe}}</p>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div class="tpgp-ele-tx">
-                                    <h2>UASC </h2>
-                                    <p>{{ object.yp_uasc}}</p>
-                                </div>
 
-                            </div>
                         </div><hr>
 
 

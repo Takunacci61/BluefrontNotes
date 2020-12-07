@@ -15,8 +15,8 @@
 										<i class="notika-icon notika-form"></i>
 									</div>
 									<div class="breadcomb-ctn">
-										<h2>Local Authority Details</h2>
-										<p>This Panel shows <span class="bread-ntd">Local Authority Details</span></p>
+										<h2>Social Media and Contact Information</h2>
+                                        <p>All the contant and social media information for  <span class="bread-ntd"><b>{{ object.yp }}</b></span></p>
 									</div>
 								</div>
 							</div>
@@ -33,106 +33,91 @@
 	</div>
     <!-- Breadcomb area End-->
 
+    <!-- Inbox area Start-->
+    <div class="inbox-area">
+        <div class="container">
+            <div class="row">
+                {% include "admission/side_menu.html" %}
+<!---The content starts here --->
+                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="invoice-wrap">
 
-                    <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
-                         <div class="hpanel email-compose mailbox-view">
+                     <div class="inbox-btn-st-ls btn-toolbar">
+                            <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
+                                <a href="{% url  'contact-detail' object.id %}"class="btn btn-default btn-sm"><i class="notika-icon notika-refresh"></i> Refresh</a>
+                                <a href="{% url  'contact-update' object.id %}" class="btn btn-default btn-sm"><i class="notika-icon notika-edit"></i> Edit</a>
 
+                            </div>
+                            <div class="btn-group ib-btn-gp active-hook nk-act nk-email-inbox">
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-left-arrow"></i></button>
+                                <button class="btn btn-default btn-sm"><i class="notika-icon notika-right-arrow"></i></button>
+                            </div>
+                        </div><hr>
+                        <div class="invoice-hds-pro">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="invoice-cmp-ds ivc-frm">
+                                        <div class="invoice-frm">
+                                            <span><i class="notika-icon notika-phone"></i> Contact Number</span>
+                                        </div>
+                                        <div class="comp-tl">
+                                            <p><i class="notika-icon notika-mail"></i> Email Address</p>
+                                        </div>
+                                        <div class="cmp-ph-em">
+                                            <span><i class="notika-icon notika-credit-card"></i>  Does the Yp have a Travel Card ?</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="invoice-cmp-ds ivc-to">
+                                        <div class="invoice-frm">
+                                            <span> {{ object.mobile_number}}</span>
+                                        </div>
+                                        <div class="comp-tl">
 
-                                <hr>
+                                            <p>{{ object.email_address}}</p>
+                                        </div>
+                                        <div class="cmp-ph-em">
+                                            <span>{{ object.travel_card}}</span>
 
-
-                                  <div class="panel-heading hbuilt">
-
-                                <div class="p-xs h4">
-                                    <small class="pull-right view-hd-ml">
-										Young Person : {{ object.yp }}
-										</small>
-
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="invoice-hs">
+                                    <span><i class="notika-icon notika-facebook"></i> Facebook</span>
+                                    <h5>{{ object.facebook}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="invoice-hs date-inv sm-res-mg-t-30 tb-res-mg-t-30 tb-res-mg-t-0">
+                                    <span><i class="notika-icon notika-twitter"></i> Twitter</span>
+                                    <h2>{{ object.twitter}}</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="invoice-hs wt-inv sm-res-mg-t-30 tb-res-mg-t-30 tb-res-mg-t-0">
+                                    <span><i class="notika-icon notika-snapchat"></i> Snapchat</span>
+                                    <h2>{{ object.snapchat }}</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="invoice-hs gdt-inv sm-res-mg-t-30 tb-res-mg-t-30 tb-res-mg-t-0">
+                                    <span><i class="notika-icon notika-snapchat"></i> Instagram</span>
+                                    <h2>{{ object.instagram}}</h2>
+                                </div>
+                            </div>
+                        </div>
 
-                                               <div class="row mg-b-15">
-                                                    <div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="skill-title">
-                                                                    <h2>Young Person Contact Infomation</h2>
-                                                                    <hr />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                     <div class="row">
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b>Contact Number</b><br />{{ object.mobile_number}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b>Email Address </b><br />{{ object.email_address}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b>Travel Card</b><br /> {{ object.travel_card}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b></b><br /></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                             <hr>
-
-                            <div class="row mg-b-15">
-                                                    <div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="skill-title">
-                                                                    <h5>Social Media Accounts</h5>
-                                                                    <hr />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                         <div class="row">
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b><i class="fa fa-facebook"></i> Facebook</b><br />{{ object.facebook}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b><i class="fa fa-twitter"></i> Twitter</b><br />{{ object.twitter}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b><i class="fa fa-snapchat"></i> SnapChat</b><br />{{ object.snapchat }}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                                        <div class="address-hr biography">
-                                                            <p><b><i class="fa fa-instagram"></i> Instagram</b><br />{{ object.instagram}}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr>
-
-
-
-                         </div>
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Invoice area End-->
 
 
 {% else %}

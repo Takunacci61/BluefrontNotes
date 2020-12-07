@@ -12,17 +12,18 @@
                             <ul class="inbox-st-nav inbox-ft">
                                 <li><a href="{% url 'child-detail' object.id %}"><i class="notika-icon notika-support"></i> Personal Details</a></li>
                                 <li><a href="{% url 'contact-detail' object.id %}"><i class="notika-icon notika-phone"></i> Contact Details</a></li>
-                                <li><a href="#"><i class="notika-icon notika-draft"></i> Physical Description</a></li>
-                                <li><a href="#"><i class="notika-icon notika-trash"></i> Health/Wellness</a></li>
+                                <li><a href="{% url 'physical-detail' object.id %}"><i class="notika-icon notika-draft"></i> Physical Description</a></li>
+                                <li><a href="{% url 'health-detail' object.id %}"><i class="notika-icon notika-ip-locator"></i> Health/Wellness</a></li>
+                                <li><a href="{% url 'bank-detail' object.id %}"><i class="notika-icon notika-ip-locator"></i> Banking Information</a></li>
                             </ul>
                         </div>
 
                         <hr>
                         <div class="inbox-status">
                             <ul class="inbox-st-nav">
-                                <li><a href="#"><i class="notika-icon notika-travel"></i>  Pen Picture</a></li>
-                                <li><a href="#"><i class="notika-icon notika-finance"></i> Child's Profile</a></li>
-                                <li><a href="#"><i class="notika-icon notika-social"></i> Relationships</a></li>
+                                <li><a href="{% url 'pen-detail' object.id %}"><i class="notika-icon notika-star"></i>  Pen Picture</a></li>
+                                <li><a href="{% url 'profile-detail' object.id %}"><i class="notika-icon notika-finance"></i> Child's Profile</a></li>
+                                <li><a href="{% url 'relations-detail' object.id %}"><i class="notika-icon notika-social"></i> Relationships</a></li>
                             </ul>
                         </div>
                         <hr>
@@ -30,7 +31,7 @@
                             <ul class="inbox-st-nav inbox-nav-mg">
                                 <li><a href="#"><i class="notika-icon notika-success"></i> Placement Details</a></li>
                                 <li><a href="#"><i class="notika-icon notika-chat"></i> Agencies</a></li>
-                                <li><a href="#"><i class="notika-icon notika-star"></i> IPA</a></li>
+                                <li><a href="{% url 'ipa-detail' object.id %}"><i class="notika-icon notika-star"></i> IPA</a></li>
                                 <li><a href="#"><i class="notika-icon notika-settings"></i> Checklist</a></li>
                                 <li><a href="{% url 'notes-child' object.id %}"><i class="notika-icon notika-support"></i> Notes Report</a></li>
                             </ul>

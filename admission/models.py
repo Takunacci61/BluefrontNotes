@@ -1034,7 +1034,6 @@ class YP_IPA (models.Model):
     yp_initial_ipa_received_date = models.DateField(default=date.today)
     yp_last_ipa_start_date = models.DateField(default=date.today)
     yp_proposed_placement_end_date = models.DateField(default=date.today)
-    staff = models.ForeignKey(User, on_delete=models.CASCADE)
     yp_type_placement = models.CharField(max_length=100)
     yp_date_added = models.DateTimeField(default=timezone.now)
 
@@ -1088,3 +1087,26 @@ class YP_Profile_Child (models.Model):
     def get_absolute_url(self):
         return reverse('profile-detail', kwargs={'pk': self.pk})
 
+
+class YP_Relationships_Associates(models.Model):
+    yp = models.ForeignKey(YP_General_Information, on_delete=models.CASCADE)
+    next_of_kin = models.CharField(max_length=100)
+    relationship_wth_next_kin = models.CharField(max_length=100)
+    next_of_kin_phone = models.IntegerField(default=0)
+    close_friend_name = models.CharField(max_length=100)
+    contact_phone_close_friend = models.IntegerField(default=0)
+    work_school_contact_phone = models.IntegerField(default=0)
+    place_worship_details = RichTextField(blank=True, null=True)
+    places_known_frequent = RichTextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Young Person Relationships and Associates"
+
+    def __str__(self):
+        return f'{self.yp}'
+
+    def save(self, *args, **kwargs):
+        super(YP_Relationships_Associates, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('relations-detail', kwargs={'pk': self.pk})

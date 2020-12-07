@@ -14,8 +14,12 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 
-from .forms import YP_General_InformationForm, Local_AuthorityForm, ProfileUpdateForm, Care_House_InfomationForm, Contact_Social_DetailsForm
-from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info
+from .forms import YP_General_InformationForm, Local_AuthorityForm, ProfileUpdateForm, Care_House_InfomationForm, \
+    Contact_Social_DetailsForm, YP_Physical_DescriptionForm, YP_Health_And_WellnessForm, YP_Banking_InformationForm, YP_Pen_PicForm, YP_Profile_ChildForm,\
+    YP_Relationships_AssociatesForm, YP_IPAForm
+
+from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info, YP_Physical_Description, \
+    YP_Health_And_Wellness, YP_Banking_Information, YP_Pen_Pic,  YP_Profile_Child, YP_Relationships_Associates, YP_IPA
 
 
 def home(request):
@@ -135,6 +139,7 @@ class AuthorityListView (LoginRequiredMixin, ListView):
     context_object_name = 'local_authority_list'
     template_name = 'admission/local_authority_list.html'
 
+
 # Placement Home
 
 
@@ -171,4 +176,91 @@ class Contact_SocialUpdateView (LoginRequiredMixin, UpdateView):
     model = YP_Contact_Info
     form_class = Contact_Social_DetailsForm
 
+# Physical Description
 
+
+class PhysicalDetailView (DetailView):
+    model = YP_Physical_Description
+
+
+class PhysicalUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_Physical_Description
+    form_class = YP_Physical_DescriptionForm
+
+
+class HealthDetailView (DetailView):
+    model = YP_Health_And_Wellness
+
+    def test_func(self):
+        obj = self.get_object ()
+        return obj.yp_id == self.request.pk
+
+
+class HealthUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_Health_And_Wellness
+    form_class = YP_Health_And_WellnessForm
+
+
+# The code below is going to handle the banking details
+
+class BankDetailView (DetailView):
+    model = YP_Banking_Information
+
+
+class BankUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_Banking_Information
+    form_class = YP_Banking_InformationForm
+
+
+class YP_Pen_PicDetailsView (DetailView):
+    model = YP_Pen_Pic
+
+
+class YP_Pen_PicUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_Pen_Pic
+    form_class = YP_Pen_PicForm
+
+
+class YP_Profile_ChildDetailsView (DetailView):
+    model = YP_Profile_Child
+
+
+class YP_Profile_ChildUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_Profile_Child
+    form_class = YP_Profile_ChildForm
+
+class YP_Relationships_AssociatesDetailsView (DetailView):
+    model = YP_Relationships_Associates
+
+
+class YP_Relationships_AssociatesUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_Relationships_Associates
+    form_class = YP_Relationships_AssociatesForm
+
+# The code below is going to handle the IPA table for the view
+
+class IPADetailView (DetailView):
+    model = YP_IPA
+    template_name = 'admission/yp_initial_ipa.html'
+
+
+class IPAListView (ListView, ):
+    model = YP_IPA
+    template_name = 'admission/yp_ipa_list.html'
+    context_object_name = 'ipa_posts'
+    ordering = ['-yp_date_added']
+
+    def get_queryset(self):
+        return YP_IPA.objects.filter (yp=self.request.resolver_match.kwargs['pk'])
+
+
+class IPAUpdateView (LoginRequiredMixin, UpdateView):
+    model = YP_IPA
+    form_class = YP_IPAForm
+
+
+class IPACreateView (LoginRequiredMixin, CreateView):
+    model = YP_IPA
+    form_class = YP_IPAForm
+
+    # In the function below we are passing two kwargs , for both the user and the young person
