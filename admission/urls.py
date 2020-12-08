@@ -17,7 +17,7 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.home, name='admission-home'),
+    path('', views.dashboard, name='admission-home'),
     path('child/lisit/', ChildListView.as_view(), name='admission-list'),
     path('admissions/', views.admissions, name='admission-admissions'),
 

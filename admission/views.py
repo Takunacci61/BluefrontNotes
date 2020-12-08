@@ -22,8 +22,14 @@ from .models import YP_General_Information, Local_Authority, Care_House_Infomati
     YP_Health_And_Wellness, YP_Banking_Information, YP_Pen_Pic,  YP_Profile_Child, YP_Relationships_Associates, YP_IPA
 
 
-def home(request):
-    return render (request, 'admission/dashboard.html', {'title': 'Bluefront Care | Dashboard'})
+def dashboard(request):
+    dashboard_placement_count = YP_General_Information.objects.count()
+    dashboard_house_count = Care_House_Infomation.objects.count()
+    dashboard_local_authority_count = Local_Authority.objects.count()
+
+    return render(request, 'admission/dashboard.html', {'dashboard_placement_count': dashboard_placement_count,
+                                                        'dashboard_local_authority_count': dashboard_local_authority_count,
+                                                        'dashboard_house_count': dashboard_house_count})
 
 
 def admissions(request):
