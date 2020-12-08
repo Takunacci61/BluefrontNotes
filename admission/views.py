@@ -26,15 +26,17 @@ def dashboard(request):
     dashboard_placement_count = YP_General_Information.objects.count()
     dashboard_house_count = Care_House_Infomation.objects.count()
     dashboard_local_authority_count = Local_Authority.objects.count()
+    dashboard_recent_placement = YP_General_Information.objects.all().order_by('-yp_date_added')[:3]
 
     return render(request, 'admission/dashboard.html', {'dashboard_placement_count': dashboard_placement_count,
                                                         'dashboard_local_authority_count': dashboard_local_authority_count,
-                                                        'dashboard_house_count': dashboard_house_count})
+                                                        'dashboard_house_count': dashboard_house_count,
+                                                        'dashboard_recent_placement': dashboard_recent_placement})
 
 
 def admissions(request):
     context = {
-        'young_person_info': YP_General_Information.objects.select_related ('profile')
+        'young_person_info': YP_General_Information.objects.select_related('profile')
 
     }
 

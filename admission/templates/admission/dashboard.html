@@ -91,12 +91,9 @@
                             </div>
                         </div>
                         <div class="widget-signup-list">
-                            <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="John Deo" href="#"><img src="img/post/1.jpg" alt="" /></a>
-                            <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="Anisha" href="#">A</a>
-                            <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="Weldro" href="#">W</a>
-                            <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="Smith" href="#"><img src="img/post/2.jpg" alt="" /></a>
-                            <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="Payel" href="#">P</a>
-
+                            {% for recent in dashboard_recent_placement %}
+                            <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="{{ recent.yp_first_name}} {{ recent.yp_surname}}" href="#">{{ recent.yp_first_name|make_list|first}}{{ recent.yp_surname|make_list|first}}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
