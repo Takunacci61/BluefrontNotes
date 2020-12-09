@@ -8,11 +8,29 @@ from admission.models import YP_General_Information
 
 
 class Notes(models.Model):
+    OPTION_1 = 'Face-to-Face'
+    OPTION_2 = 'Telephone'
+    OPTION_3 = 'Email'
+    OPTION_4 = 'Instant Messaging'
+    OPTION_5 = 'Task'
+    OPTION_6 = 'Admin'
+
+    CONTACT_CHOICES = [
+        (OPTION_1, 'Face-to-Face'),
+        (OPTION_2, 'Telephone'),
+        (OPTION_3, 'Email'),
+        (OPTION_4, 'Instant Messaging'),
+        (OPTION_5, 'Task'),
+        (OPTION_6, 'Admin'),
+
+    ]
+
     yp = models.ForeignKey(YP_General_Information, related_name="notes", on_delete=models.CASCADE)
     date_notes = models.DateField(default=date.today)
     time_start = models.TimeField(auto_now=False, auto_now_add=False)
     time_end = models.TimeField(auto_now=False, auto_now_add=False)
     location_id = models.CharField(max_length=100)
+    contact_type = models.CharField(max_length=100, choices=CONTACT_CHOICES ,default=OPTION_1)
     staff = models.ForeignKey(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=100)
     detailed_notes = RichTextField(blank=True, null=True)
