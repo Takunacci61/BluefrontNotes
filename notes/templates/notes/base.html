@@ -222,7 +222,7 @@
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li {% if request.resolver_match.url_name == 'admission-home' %} class="active" {% endif %}><a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
-                        <li {% if request.resolver_match.url_name == 'admission-list'%}class="active"{% elif request.resolver_match.url_name == 'child-create' %} class="active"{% elif request.resolver_match.url_name == 'child-detail' %} class="active"{% elif request.resolver_match.url_name == 'child-update' %} class="active"{% endif %}><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-support"></i> YP Hub</a>
+                        <li {% if request.resolver_match.url_name == 'admission-list'%}class="active"{% elif request.resolver_match.url_name == 'admission-all' %} class="active"{% elif request.resolver_match.url_name == 'child-create' %} class="active"{% elif request.resolver_match.url_name == 'child-detail' %} class="active"{% elif request.resolver_match.url_name == 'child-update' %} class="active"{% endif %}><a data-toggle="tab" href="#mailbox"><i class="notika-icon notika-support"></i> YP Hub</a>
                         </li>
                         <li {% if request.resolver_match.url_name == 'authority-list' %}class="active"{% elif request.resolver_match.url_name == 'authority-create' %} class="active"{% elif request.resolver_match.url_name == 'authority-detail' %} class="active"{% elif request.resolver_match.url_name == 'authority-update' %} class="active"{% endif %}><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Local Authority</a>
                         </li>
@@ -242,14 +242,14 @@
 
                             </ul>
                         </div>
-                        <div id="mailbox"{% if request.resolver_match.url_name == 'admission-list' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% elif request.resolver_match.url_name == 'child-create' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% elif request.resolver_match.url_name == 'child-update' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% elif request.resolver_match.url_name == 'child-detail' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% else %}class="tab-pane notika-tab-menu-bg animated flipInX"{% endif %}>
+                        <div id="mailbox"{% if request.resolver_match.url_name == 'admission-list' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% elif request.resolver_match.url_name == 'admission-all' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% elif request.resolver_match.url_name == 'child-create' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% elif request.resolver_match.url_name == 'child-update' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% elif request.resolver_match.url_name == 'child-detail' %}class="tab-pane in active notika-tab-menu-bg animated flipInX"{% else %}class="tab-pane notika-tab-menu-bg animated flipInX"{% endif %}>
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="{% url  'child-create' %}">New Placement</a>
                                 </li>
                                 <li><a href="#">Active Placements</a>
                                 </li>
-                                <li><a href="{% url  'admission-list' %}">All Placements</a></li>
-                                <li><a href="#">My Young People</a></li>
+                                <li><a href="{% url  'admission-all' %}">All Placements</a></li>
+                                <li><a href="{% url  'admission-list' %}">My Young People</a></li>
 
                             </ul>
                         </div>

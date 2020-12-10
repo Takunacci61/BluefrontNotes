@@ -75,8 +75,15 @@ def profile(request):
 
 class ChildListView (ListView):
     queryset = YP_General_Information.objects.select_related ('profile')
-    template_name = 'admission/all_placements.html'
+    template_name = 'admission/my_placements.html'
     context_object_name = 'young_person_info'
+    ordering = ['-yp_date_added']
+
+
+class ChildListAllView (ListView):
+    queryset = YP_General_Information.objects.select_related ('profile')
+    template_name = 'admission/all_placements.html'
+    context_object_name = 'young_person_all'
     ordering = ['-yp_date_added']
 
 

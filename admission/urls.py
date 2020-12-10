@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    ChildListView, ChildDetailView, ChildCreateView, ChildUpdateView, ChildDeleteView,
+    ChildListView, ChildDetailView, ChildCreateView, ChildUpdateView, ChildDeleteView,ChildListAllView,
     AuthorityCreateView, AuthorityListView, AuthorityDetailView, AuthorityUpdateView,
     CareHomeCreateView, CareHomeUpdateView, CareHomeDetailView, CareHomeListView,
     Contact_SocialDetailsView, Contact_SocialUpdateView,
@@ -18,7 +18,8 @@ from . import views
 
 urlpatterns = [
     path('', views.dashboard, name='admission-home'),
-    path('child/lisit/', ChildListView.as_view(), name='admission-list'),
+    path('child/list/', ChildListView.as_view(), name='admission-list'),
+    path('child/all/', ChildListAllView.as_view(), name='admission-all'),
     path('admissions/', views.admissions, name='admission-admissions'),
 
     # General Information
