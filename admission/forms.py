@@ -6,16 +6,13 @@ from .models import YP_General_Information, Local_Authority, Profile, Care_House
 class YP_General_InformationForm (forms.ModelForm):
     class Meta:
         model = YP_General_Information
-        fields = ['yp_first_name', 'yp_surname', 'local_authority', 'yp_assigned_id', 'yp_nickname', 'yp_previous_name',
+        fields = ['yp_first_name', 'yp_surname', 'yp_nickname', 'yp_previous_name',
                   'yp_date_of_birth', 'yp_gender', 'yp_ethnicity', 'yp_nationality', 'yp_country_origin',
-                  'yp_first_language',
-                  'yp_other_spoken_languages', 'yp_status', 'yp_uasc']
+                  'yp_first_language','yp_other_spoken_languages', 'local_authority', 'yp_assigned_id', 'yp_status', 'yp_uasc']
 
         widgets = {
             'yp_first_name': forms.TextInput (attrs={'class': 'form-control'}),
             'yp_surname': forms.TextInput(attrs={'class': 'form-control'}),
-            'local_authority': forms.Select(attrs={'class': 'form-control'}),
-            'yp_assigned_id': forms.TextInput(attrs={'class': 'form-control'}),
             'yp_nickname': forms.TextInput (attrs={'class': 'form-control'}),
             'yp_previous_name': forms.TextInput (attrs={'class': 'form-control'}),
             'yp_date_of_birth': forms.DateInput (attrs={'class': 'form-control', 'type': 'date'}),
@@ -25,6 +22,8 @@ class YP_General_InformationForm (forms.ModelForm):
             'yp_ethnicity': forms.Select (attrs={'class': 'form-control'}),
             'yp_country_origin': forms.Select (attrs={'class': 'form-control'}),
             'yp_other_spoken_languages': forms.Select (attrs={'class': 'form-control'}),
+            'local_authority': forms.Select (attrs={'class': 'form-control'}),
+            'yp_assigned_id': forms.TextInput (attrs={'class': 'form-control'}),
             'yp_status': forms.Select (attrs={'class': 'form-control'}),
             'yp_uasc': forms.Select (attrs={'class': 'form-control'}),
 
@@ -54,24 +53,29 @@ class YP_General_InformationForm (forms.ModelForm):
 class Local_AuthorityForm (forms.ModelForm):
     class Meta:
         model = Local_Authority
-        fields = ['authority_name', 'postcode', 'authority_address', 'authority_location', 'authority_email',
-                  'authority_phone']
+        fields = ['authority_name', 'authority_address', 'authority_address_2', 'authority_location', 'authority_postcode',  'authority_location','authority_phone', 'authority_email', 'authority_emergency_number' ]
 
         widgets = {
-            'authority_name': forms.TextInput (attrs={'class': 'form-control'}),
-            'postcode': forms.TextInput (attrs={'class': 'form-control'}),
-            'authority_address': forms.TextInput (attrs={'class': 'form-control'}),
-            'authority_email': forms.TextInput (attrs={'class': 'form-control'}),
-            'authority_phone': forms.TextInput (attrs={'class': 'form-control'})
+            'authority_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'authority_postcode': forms.TextInput(attrs={'class': 'form-control'}),
+            'authority_address': forms.TextInput(attrs={'class': 'form-control'}),
+            'authority_address_2': forms.TextInput(attrs={'class': 'form-control'}),
+            'authority_location ': forms.TextInput(attrs={'class': 'form-control'}),
+            'authority_email': forms.TextInput(attrs={'class': 'form-control'}),
+            'authority_phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'authority_emergency_number': forms.NumberInput(attrs={'class': 'form-control'})
 
         }
 
         labels = {
             'authority_name': 'Local Authority Name',
-            'postcode': 'Post Code',
+            'authority_postcode': 'Post Code',
             'authority_address': 'Address',
-            'authority_email': 'Email Address ',
-            'authority_phone': 'Phone'
+            'authority_address_2': 'Address Two (Optional)',
+            'authority_location': 'Town',
+            'authority_email': 'Placement Contact Email Address ',
+            'authority_phone': 'Placement Contact Number',
+            'authority_emergency_number': 'Emergency Contact  Number (out of hours)'
         }
 
 
@@ -84,9 +88,8 @@ class ProfileUpdateForm (forms.ModelForm):
 class Care_House_InfomationForm (forms.ModelForm):
     class Meta:
         model = Care_House_Infomation
-        fields = ['house_name', 'location_id', 'house_address_one', 'house_address_two', 'house_type_of_accommodation',
-                  'number_of_beds',
-                  'number_of_bathrooms', 'postcode', 'house_number']
+        fields = ['house_name', 'house_address_one', 'house_address_two', 'location_id', 'postcode', 'house_number','house_email', 'house_type_of_accommodation',
+                  'number_of_beds','number_of_bathrooms']
 
         widgets = {
             'house_name': forms.TextInput (attrs={'class': 'form-control'}),
@@ -108,7 +111,7 @@ class Care_House_InfomationForm (forms.ModelForm):
             'house_address_two': 'Address 2 (Optional)',
             'location_id': 'Town',
             'postcode': 'Postcode',
-            'house_number': 'House Contact Number',
+            'house_number': 'House Mobile',
             'house_email': 'House Email',
             'number_of_beds': 'Number of Beds',
             'number_of_bathrooms': 'Number of Bathrooms',

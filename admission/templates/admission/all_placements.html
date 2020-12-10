@@ -43,6 +43,7 @@
 
 
    {% for yp in young_person_info %}
+
    {% if forloop.first %}
             <div class="row">
   {% endif %}
@@ -84,7 +85,8 @@
     {% if forloop.last %}
          </div>
     {% endif %}
-    {% endfor %}
+
+{% endfor %}
 
         </div>
     </div>

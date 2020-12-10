@@ -10,7 +10,6 @@ from PIL import Image
 
 class Local_Authority(models.Model):
     authority_name = models.CharField(max_length=100)
-    postcode = models.CharField(max_length=100)
     authority_address = models.CharField(max_length=100)
     authority_address_2 = models.CharField(max_length=100)
     authority_location = models.CharField(max_length=100)
