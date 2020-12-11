@@ -28,7 +28,7 @@ SECRET_KEY = '9o9t((#epyl5mf6^*fg%()!5*1o7c%#jh!oc1is#t3e57sxl%w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bluefrontnotes.herokuapp.com']
+ALLOWED_HOSTS = ['bluefrontsystem.herokuapp.com']
 
 # Application definition
 
