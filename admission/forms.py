@@ -82,8 +82,8 @@ class Local_AuthorityForm (forms.ModelForm):
 class Care_House_InfomationForm (forms.ModelForm):
 
     house_address_two = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False, label='Address 2 (Optional)')
-    house_number = forms.IntegerField(required=False)
-    house_email = forms.EmailField(required=False)
+    house_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), required=False, label='House Phone')
+    house_email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), required=False, label='House Email')
 
     class Meta:
         model = Care_House_Infomation
