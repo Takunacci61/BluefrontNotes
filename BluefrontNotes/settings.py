@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'notes.apps.NotesConfig',
     'admission.apps.AdmissionConfig',
     'users.apps.UsersConfig',
+    'accounts',
     'crispy_forms',
     'django_filters',
     'django.contrib.admin',
@@ -131,8 +132,8 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-
-
+AUTH_USER_MODEL = 'accounts.User' # new
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend'] # new
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 

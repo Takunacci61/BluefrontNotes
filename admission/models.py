@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.datetime_safe import date
-from django.contrib.auth.models import User
+from django.conf import settings
 from ckeditor.fields import RichTextField
 from PIL import Image
 # Create your models here.
@@ -763,7 +763,7 @@ class YP_General_Information(models.Model):
         default=NO,
     )
     yp_date_added = models.DateTimeField(default=timezone.now)
-    staff = models.ForeignKey(User, on_delete=models.CASCADE)
+    staff = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Young Person General Information"

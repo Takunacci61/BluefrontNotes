@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from users import views as user_views
 from django.contrib.auth import views
 from users.forms import UserLoginForm, UserPasswordResetForm
-
+from accounts.views import LoginView, RegisterView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
@@ -35,7 +35,6 @@ urlpatterns = [
     path('notes', include('notes.urls')),
     path('', include('admission.urls')),
     # path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-
 ]
 
 

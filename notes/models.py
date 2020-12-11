@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from django.utils.datetime_safe import date
@@ -31,7 +31,7 @@ class Notes(models.Model):
     time_end = models.TimeField(auto_now=False, auto_now_add=False)
     location_id = models.CharField(max_length=100)
     contact_type = models.CharField(max_length=100, choices=CONTACT_CHOICES ,default=OPTION_1)
-    staff = models.ForeignKey(User, on_delete=models.CASCADE)
+    staff = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     role = models.CharField(max_length=100)
     detailed_notes = RichTextField(blank=True, null=True)
     date_added = models.DateTimeField(default=timezone.now)
