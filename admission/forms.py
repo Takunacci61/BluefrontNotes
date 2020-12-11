@@ -80,21 +80,26 @@ class Local_AuthorityForm (forms.ModelForm):
 
 
 class Care_House_InfomationForm (forms.ModelForm):
+
+    house_address_two = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False, label='Address 2 (Optional)')
+    house_number = forms.IntegerField(required=False)
+    house_email = forms.EmailField(required=False)
+
     class Meta:
         model = Care_House_Infomation
         fields = ['house_name', 'house_address_one', 'house_address_two', 'location_id', 'postcode', 'house_number','house_email', 'house_type_of_accommodation',
                   'number_of_beds','number_of_bathrooms']
 
         widgets = {
-            'house_name': forms.TextInput (attrs={'class': 'form-control'}),
-            'location_id': forms.TextInput (attrs={'class': 'form-control'}),
+            'house_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'location_id': forms.TextInput(attrs={'class': 'form-control'}),
             'house_address_one': forms.TextInput (attrs={'class': 'form-control'}),
-            'house_address_two': forms.TextInput (attrs={'class': 'form-control', 'required': False}),
-            'number_of_beds': forms.Select (attrs={'class': 'form-control'}),
-            'number_of_bathrooms': forms.Select (attrs={'class': 'form-control'}),
-            'house_type_of_accommodation': forms.Select (attrs={'class': 'form-control'}),
-            'postcode': forms.TextInput (attrs={'class': 'form-control'}),
-            'house_number': forms.NumberInput (attrs={'class': 'form-control', 'required': False}),
+            'house_address_two': forms.TextInput(attrs={'class': 'form-control'}),
+            'number_of_beds': forms.Select(attrs={'class': 'form-control'}),
+            'number_of_bathrooms': forms.Select(attrs={'class': 'form-control'}),
+            'house_type_of_accommodation': forms.Select(attrs={'class': 'form-control'}),
+            'postcode': forms.TextInput(attrs={'class': 'form-control'}),
+            'house_number': forms.NumberInput(attrs={'class': 'form-control', 'required': False}),
             'house_email': forms.EmailInput (attrs={'class': 'form-control', 'required': False, }),
 
         }
@@ -109,8 +114,11 @@ class Care_House_InfomationForm (forms.ModelForm):
             'house_email': 'House Email',
             'number_of_beds': 'Number of Beds',
             'number_of_bathrooms': 'Number of Bathrooms',
-            'house_type_of_accommodation': 'Type of House'
+            'house_type_of_accommodation': 'Type of House',
         }
+
+
+
 
 
 # Contact information
