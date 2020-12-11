@@ -14,4 +14,8 @@ urlpatterns = [
     path('notes/reports/<int:pk>/child/', views.show_all_child_page, name='notes-child'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('about/', views.about, name='notes-about'),
+
+
+
+
 ]

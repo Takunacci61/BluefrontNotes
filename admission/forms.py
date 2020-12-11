@@ -1,6 +1,6 @@
 from django import forms
-from .models import YP_General_Information, Local_Authority, Profile, Care_House_Infomation, YP_Contact_Info, YP_Health_And_Wellness, YP_Physical_Description,\
-    YP_Pen_Pic,YP_Banking_Information, YP_IPA, YP_Profile_Child, YP_Relationships_Associates
+from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info, YP_Health_And_Wellness, YP_Physical_Description,\
+    YP_Pen_Pic,YP_Banking_Information, YP_IPA, YP_Profile_Child, YP_Relationships_Associates, Profile_Pic
 
 
 class YP_General_InformationForm (forms.ModelForm):
@@ -77,12 +77,6 @@ class Local_AuthorityForm (forms.ModelForm):
             'authority_phone': 'Placement Contact Number',
             'authority_emergency_number': 'Emergency Contact  Number (out of hours)'
         }
-
-
-class ProfileUpdateForm (forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['image']
 
 
 class Care_House_InfomationForm (forms.ModelForm):
@@ -360,3 +354,9 @@ class YP_Relationships_AssociatesForm(forms.ModelForm):
             'work_school_contact_phone ': 'Work / School Phone',
 
         }
+
+
+class Profile_PicUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile_Pic
+        fields = ['image']

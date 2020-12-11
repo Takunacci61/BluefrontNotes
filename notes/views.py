@@ -33,6 +33,9 @@ def home(request):
     return render (request, 'notes/home.html', context)
 
 
+
+
+
 class NotesListView (LoginRequiredMixin, ListView):
     model = Notes
     template_name = 'notes/notes_list.html'  # <app>/<model>_<viewtype>.html

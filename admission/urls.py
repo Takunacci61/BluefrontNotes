@@ -11,6 +11,7 @@ from .views import (
     YP_Relationships_AssociatesDetailsView, YP_Relationships_AssociatesUpdateView,
     BankDetailView, BankUpdateView,
     IPADetailView, IPAUpdateView, IPAListView,
+    PicUpdateView,
 
 )
 from . import views
@@ -20,6 +21,7 @@ urlpatterns = [
     path('', views.dashboard, name='admission-home'),
     path('child/list/', ChildListView.as_view(), name='admission-list'),
     path('child/all/', ChildListAllView.as_view(), name='admission-all'),
+    path('/child/<int:pk>/profile/', PicUpdateView.as_view(), name='pic-update'),
     path('admissions/', views.admissions, name='admission-admissions'),
 
     # General Information

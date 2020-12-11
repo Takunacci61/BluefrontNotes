@@ -14,29 +14,32 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 
-from .forms import YP_General_InformationForm, Local_AuthorityForm, ProfileUpdateForm, Care_House_InfomationForm, \
-    Contact_Social_DetailsForm, YP_Physical_DescriptionForm, YP_Health_And_WellnessForm, YP_Banking_InformationForm, YP_Pen_PicForm, YP_Profile_ChildForm,\
-    YP_Relationships_AssociatesForm, YP_IPAForm
+from .forms import YP_General_InformationForm, Local_AuthorityForm, Care_House_InfomationForm, \
+    Contact_Social_DetailsForm, YP_Physical_DescriptionForm, YP_Health_And_WellnessForm, YP_Banking_InformationForm, \
+    YP_Pen_PicForm, YP_Profile_ChildForm, \
+    YP_Relationships_AssociatesForm, YP_IPAForm, Profile_PicUpdateForm
 
-from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info, YP_Physical_Description, \
-    YP_Health_And_Wellness, YP_Banking_Information, YP_Pen_Pic,  YP_Profile_Child, YP_Relationships_Associates, YP_IPA
+from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info, \
+    YP_Physical_Description, \
+    YP_Health_And_Wellness, YP_Banking_Information, YP_Pen_Pic, YP_Profile_Child, YP_Relationships_Associates, YP_IPA, \
+    Profile_Pic
 
 
 def dashboard(request):
-    dashboard_placement_count = YP_General_Information.objects.count()
-    dashboard_house_count = Care_House_Infomation.objects.count()
-    dashboard_local_authority_count = Local_Authority.objects.count()
-    dashboard_recent_placement = YP_General_Information.objects.all().order_by('-yp_date_added')[:3]
+    dashboard_placement_count = YP_General_Information.objects.count ()
+    dashboard_house_count = Care_House_Infomation.objects.count ()
+    dashboard_local_authority_count = Local_Authority.objects.count ()
+    dashboard_recent_placement = YP_General_Information.objects.all ().order_by ('-yp_date_added')[:3]
 
-    return render(request, 'admission/dashboard.html', {'dashboard_placement_count': dashboard_placement_count,
-                                                        'dashboard_local_authority_count': dashboard_local_authority_count,
-                                                        'dashboard_house_count': dashboard_house_count,
-                                                        'dashboard_recent_placement': dashboard_recent_placement})
+    return render (request, 'admission/dashboard.html', {'dashboard_placement_count': dashboard_placement_count,
+                                                         'dashboard_local_authority_count': dashboard_local_authority_count,
+                                                         'dashboard_house_count': dashboard_house_count,
+                                                         'dashboard_recent_placement': dashboard_recent_placement})
 
 
 def admissions(request):
     context = {
-        'young_person_info': YP_General_Information.objects.select_related('profile')
+        'young_person_info': YP_General_Information.objects.select_related ('profile_pic')
 
     }
 
@@ -49,39 +52,15 @@ def young_person_local_authority_view(request, pk):
                    {'yp_local_authority_details': yp_local_authority_details})
 
 
-def profile(request):
-    if request.method == 'POST':
-        u_form = YP_General_InformationForm (request.POST, instance=request.user)
-        p_form = ProfileUpdateForm (request.POST,
-                                    request.FILES,
-                                    instance=request.user.profile)
-        if u_form.is_valid () and p_form.is_valid ():
-            u_form.save ()
-            p_form.save ()
-            messages.success (request, f'Your account has been updated!')
-            return redirect ('profile')
-
-    else:
-        u_form = YP_General_InformationForm (instance=request.user)
-        p_form = ProfileUpdateForm (instance=request.user.profile)
-
-    context = {
-        'u_form': u_form,
-        'p_form': p_form
-    }
-
-    return render (request, 'users/profile.html', context)
-
-
 class ChildListView (ListView):
-    queryset = YP_General_Information.objects.select_related ('profile')
+    queryset = YP_General_Information.objects.select_related ('profile_pic')
     template_name = 'admission/my_placements.html'
     context_object_name = 'young_person_info'
     ordering = ['-yp_date_added']
 
 
 class ChildListAllView (ListView):
-    queryset = YP_General_Information.objects.select_related ('profile')
+    queryset = YP_General_Information.objects.select_related ('profile_pic')
     template_name = 'admission/all_placements.html'
     context_object_name = 'young_person_all'
     ordering = ['-yp_date_added']
@@ -191,6 +170,7 @@ class Contact_SocialUpdateView (LoginRequiredMixin, UpdateView):
     model = YP_Contact_Info
     form_class = Contact_Social_DetailsForm
 
+
 # Physical Description
 
 
@@ -244,6 +224,7 @@ class YP_Profile_ChildUpdateView (LoginRequiredMixin, UpdateView):
     model = YP_Profile_Child
     form_class = YP_Profile_ChildForm
 
+
 class YP_Relationships_AssociatesDetailsView (DetailView):
     model = YP_Relationships_Associates
 
@@ -252,7 +233,9 @@ class YP_Relationships_AssociatesUpdateView (LoginRequiredMixin, UpdateView):
     model = YP_Relationships_Associates
     form_class = YP_Relationships_AssociatesForm
 
+
 # The code below is going to handle the IPA table for the view
+
 
 class IPADetailView (DetailView):
     model = YP_IPA
@@ -279,3 +262,9 @@ class IPACreateView (LoginRequiredMixin, CreateView):
     form_class = YP_IPAForm
 
     # In the function below we are passing two kwargs , for both the user and the young person
+
+
+class PicUpdateView (LoginRequiredMixin, UpdateView):
+    model = Profile_Pic
+    form_class = Profile_PicUpdateForm
+    template_name = 'admission/pic_update.html'

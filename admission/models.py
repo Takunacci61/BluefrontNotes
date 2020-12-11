@@ -775,7 +775,7 @@ class YP_General_Information(models.Model):
         return reverse('child-detail', kwargs={'pk': self.pk})
 
 
-class Profile(models.Model):
+class Profile_Pic(models.Model):
     yp = models.OneToOneField(YP_General_Information, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
@@ -783,7 +783,7 @@ class Profile(models.Model):
         return f'{self.yp} Young Person Profile Pic'
 
     def save(self, *args, **kwargs):
-        super(Profile, self).save(*args, **kwargs)
+        super(Profile_Pic, self).save(*args, **kwargs)
 
         img = Image.open(self.image.path)
 
@@ -791,6 +791,9 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+    def get_absolute_url(self):
+        return reverse('child-detail', kwargs={'pk': self.pk})
 
 
 class Care_House_Infomation (models.Model):

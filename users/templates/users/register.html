@@ -1,21 +1,18 @@
-{% extends "notes/base.html" %}
-{% load crispy_forms_tags %}
+{% extends "users/user_navbar.html" %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+    <div class="login-content">
+
+        <div class="nk-block toggled">
+        <!-- Register -->
+            <div class="nk-form">
+                <img src="https://bluefrontcare.co.uk/uploads/34389-preview-full-bluefront-care-logo.png" class="image-clean-center" width="150px">
+                <hr style="border: 1px solid #0064b9;">
+            <p class="text-center"> If you do not have an account please contact the systems administrator for asssistance</p>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-            </small>
+            <div class="nk-navigation rg-ic-stl">
+                <a href="{% url 'login' %}" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span>Sign in</span></a>
+                <a href="{% url 'password_reset' %}"  data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
+            </div>
         </div>
     </div>
 {% endblock content %}
