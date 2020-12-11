@@ -72,7 +72,7 @@
       <td></td>
        <td>
            <div class="widget-signup-list">
-   <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="{{ yp.yp_first_name }}  &nbsp; {{yp.yp_surname }}" href="#">{{ yp.yp_first_name|make_list|first}}{{ yp.yp_surname|make_list|first}}</a>
+   <a class="signup-wd-mn" data-toggle="tooltip" data-placement="top" title="{{ yp.yp_first_name }}  &nbsp; {{yp.yp_surname }}" href="{% url 'child-detail' yp.id %}">{{ yp.yp_first_name|make_list|first}}{{ yp.yp_surname|make_list|first}}</a>
 
            </div>
        </td>
