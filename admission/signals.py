@@ -20,4 +20,4 @@ def add_genaral_information(sender, instance, created, **kwargs):
 
 @receiver (post_save, sender=YP_General_Information)
 def save_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    instance.profile_pic.save()
