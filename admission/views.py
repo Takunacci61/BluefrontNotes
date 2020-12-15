@@ -2,14 +2,6 @@ import os
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib import messages
-from BluefrontNotes import settings
-# from .filters import YP_Notes_Month_Filter
-from django.template.loader import render_to_string
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-import tempfile
-import datetime
-
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -19,7 +11,7 @@ from .forms import YP_General_InformationForm, Local_AuthorityForm, Care_House_I
     YP_Pen_PicForm, YP_Profile_ChildForm, \
     YP_Relationships_AssociatesForm, YP_IPAForm, Profile_PicUpdateForm
 
-from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info, \
+from .models import YP_General_Information, Local_Authority, Care_House_Information, YP_Contact_Info, \
     YP_Physical_Description, \
     YP_Health_And_Wellness, YP_Banking_Information, YP_Pen_Pic, YP_Profile_Child, YP_Relationships_Associates, YP_IPA, \
     Profile_Pic
@@ -27,7 +19,7 @@ from .models import YP_General_Information, Local_Authority, Care_House_Infomati
 
 def dashboard(request):
     dashboard_placement_count = YP_General_Information.objects.count ()
-    dashboard_house_count = Care_House_Infomation.objects.count ()
+    dashboard_house_count = Care_House_Information.objects.count ()
     dashboard_local_authority_count = Local_Authority.objects.count ()
     dashboard_recent_placement = YP_General_Information.objects.all ().order_by ('-yp_date_added')[:3]
 
@@ -138,24 +130,24 @@ class AuthorityListView (LoginRequiredMixin, ListView):
 
 
 class CareHomeCreateView (LoginRequiredMixin, CreateView):
-    model = Care_House_Infomation
+    model = Care_House_Information
     form_class = Care_House_InfomationForm
     template_name = 'admission/new_care_home.html'
 
 
 class CareHomeUpdateView (LoginRequiredMixin, UpdateView):
-    model = Care_House_Infomation
+    model = Care_House_Information
     form_class = Care_House_InfomationForm
     template_name = 'admission/new_care_home.html'
 
 
 class CareHomeDetailView (LoginRequiredMixin, DetailView):
-    model = Care_House_Infomation
+    model = Care_House_Information
     template_name = 'admission/home_details.html'
 
 
 class CareHomeListView (LoginRequiredMixin, ListView):
-    model = Care_House_Infomation
+    model = Care_House_Information
     context_object_name = 'home_list_info'
     template_name = 'admission/home_list.html'
 

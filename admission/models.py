@@ -29,6 +29,87 @@ class Local_Authority(models.Model):
         return reverse('authority-detail', kwargs={'pk': self.pk})
 
 
+class Care_House_Information (models.Model):
+
+    OPTION_1 = 'Detached'
+    OPTION_2 = 'Semi-Detached'
+    OPTION_3 = 'Terraced'
+    OPTION_4 = 'End of Terrace'
+    OPTION_5 = 'Flat'
+    OPTION_6 = 'Studio Flat'
+    OPTION_7 = 'Split-Level Flat'
+    OPTION_8 = 'Converted Flat'
+    OPTION_9 = 'Maisonette'
+    OPTION_10 = 'Cottage'
+    OPTION_11 = 'Bungalow'
+    OPTION_12 = 'Mansion'
+
+    OPTN_1 = 1
+    OPTN_2 = 2
+    OPTN_3 = 3
+    OPTN_4 = 4
+    OPTN_5 = 5
+    OPTN_6 = 6
+    OPTN_7 = 7
+    OPTN_8 = 8
+    OPTN_9 = 9
+    OPTN_10 = 10
+    OPTN_11 = 11
+    OPTN_12 = 12
+
+    PLACEMENT_CHOICES = [
+        (OPTION_1, 'Detached'),
+        (OPTION_2, 'Semi-Detached'),
+        (OPTION_3, 'Terraced'),
+        (OPTION_4, 'End of Terrace'),
+        (OPTION_5, 'Flat'),
+        (OPTION_6, 'Studio Flat'),
+        (OPTION_7, 'Split-Level Flat'),
+        (OPTION_8, 'Converted Flat'),
+        (OPTION_9, 'Maisonette'),
+        (OPTION_10, 'Cottage'),
+        (OPTION_11, 'Bungalow'),
+        (OPTION_12, 'Mansion'),
+
+    ]
+
+    NUMBER_CHOICES = [
+        (OPTN_1, 1),
+        (OPTN_2, 2),
+        (OPTN_3, 3),
+        (OPTN_4, 4),
+        (OPTN_5, 5),
+        (OPTN_6, 6),
+        (OPTN_7, 7),
+        (OPTN_8, 8),
+        (OPTN_9, 9),
+        (OPTN_10, 10),
+        (OPTN_11, 11),
+        (OPTN_12, 12),
+    ]
+
+    house_name = models.CharField(max_length=100)
+    location_id = models.CharField(max_length=100)
+    house_address_one = models.CharField(max_length=100)
+    house_address_two = models.CharField(max_length=100, default='')
+    postcode = models.CharField(max_length=100)
+    house_number = models.IntegerField(default=0)
+    house_email = models.EmailField(max_length=254, default='')
+    number_of_beds = models.IntegerField(choices=NUMBER_CHOICES, default=OPTN_1)
+    number_of_bathrooms = models.IntegerField(choices=NUMBER_CHOICES, default=OPTN_1)
+    house_type_of_accommodation = models.CharField(max_length=50, choices=PLACEMENT_CHOICES)
+    date_added = models.DateTimeField (default=timezone.now)
+
+    class Meta:
+        verbose_name_plural = "Care House Information"
+
+    def __str__(self):
+        return self.house_name
+
+    def get_absolute_url(self):
+        return reverse('home-detail', kwargs={'pk': self.pk})
+
+
 class YP_General_Information(models.Model):
     # Boolean
 
@@ -715,55 +796,34 @@ class YP_General_Information(models.Model):
 
     ]
 
+    STAT_1 = 'Young Parent'
+    STAT_2 = 'Not a Parent'
+
+    STAT_CHOICES = [
+        (STAT_1, 'Young Parent'),
+        (STAT_2, 'Not a Parent'),
+
+    ]
+
     yp_first_name = models.CharField(max_length=100)
     local_authority = models.ForeignKey(Local_Authority, on_delete=models.CASCADE)
     yp_assigned_id = models.CharField(max_length=100)
     yp_surname = models.CharField(max_length=100)
     yp_nickname = models.CharField(max_length=100)
-    yp_gender = models.CharField(
-        max_length=50,
-        choices=GENDER_CHOICES,
-
-    )
+    yp_gender = models.CharField(max_length=50, choices=GENDER_CHOICES,)
     yp_previous_name = models.CharField(max_length=100)
     yp_date_of_birth = models.DateField(default=date.today)
-    yp_ethnicity = models.CharField(
-        max_length=100,
-        choices=ETHNICITY,
-        default=OPTION_1,
-    )
-    yp_nationality = models.CharField(
-        max_length=100,
-        choices=COUNTRIES,
-        default=UNITED_KINGDOM,
-    )
-    yp_country_origin = models.CharField(
-        max_length=100,
-        choices=COUNTRIES,
-        default=UNITED_KINGDOM,
-    )
-    yp_first_language = models.CharField(
-        max_length=50,
-        choices=LANGUAGE,
-
-    )
-    yp_other_spoken_languages =models.CharField(
-        max_length=50,
-        choices=LANGUAGE,
-
-    )
-    yp_status = models.CharField(
-        max_length=50,
-        choices=STATUS_CHOICES,
-
-    )
-    yp_uasc = models.CharField(
-        max_length=10,
-        choices=UASC_CHOICES,
-        default=NO,
-    )
+    yp_ethnicity = models.CharField(max_length=100, choices=ETHNICITY, default=OPTION_1)
+    yp_nationality = models.CharField( max_length=100, choices=COUNTRIES, default=UNITED_KINGDOM)
+    yp_country_origin = models.CharField( max_length=100, choices=COUNTRIES, default=UNITED_KINGDOM)
+    yp_first_language = models.CharField( max_length=50, choices=LANGUAGE)
+    yp_other_spoken_languages = models.CharField( max_length=50, choices=LANGUAGE,)
+    yp_status = models.CharField(max_length=50, choices=STATUS_CHOICES,)
+    yp_uasc = models.CharField(max_length=10, choices=UASC_CHOICES, default=NO,)
     yp_date_added = models.DateTimeField(default=timezone.now)
+    parenthood = models.CharField(max_length=15, choices=STAT_CHOICES, default=NO,)
     staff = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    assigned_home = models.ForeignKey(Care_House_Information, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Young Person General Information"
@@ -794,87 +854,6 @@ class Profile_Pic(models.Model):
 
     def get_absolute_url(self):
         return reverse('child-detail', kwargs={'pk': self.pk})
-
-
-class Care_House_Infomation (models.Model):
-
-    OPTION_1 = 'Detached'
-    OPTION_2 = 'Semi-Detached'
-    OPTION_3 = 'Terraced'
-    OPTION_4 = 'End of Terrace'
-    OPTION_5 = 'Flat'
-    OPTION_6 = 'Studio Flat'
-    OPTION_7 = 'Split-Level Flat'
-    OPTION_8 = 'Converted Flat'
-    OPTION_9 = 'Maisonette'
-    OPTION_10 = 'Cottage'
-    OPTION_11 = 'Bungalow'
-    OPTION_12 = 'Mansion'
-
-    OPTN_1 = 1
-    OPTN_2 = 2
-    OPTN_3 = 3
-    OPTN_4 = 4
-    OPTN_5 = 5
-    OPTN_6 = 6
-    OPTN_7 = 7
-    OPTN_8 = 8
-    OPTN_9 = 9
-    OPTN_10 = 10
-    OPTN_11 = 11
-    OPTN_12 = 12
-
-    PLACEMENT_CHOICES = [
-        (OPTION_1, 'Detached'),
-        (OPTION_2, 'Semi-Detached'),
-        (OPTION_3, 'Terraced'),
-        (OPTION_4, 'End of Terrace'),
-        (OPTION_5, 'Flat'),
-        (OPTION_6, 'Studio Flat'),
-        (OPTION_7, 'Split-Level Flat'),
-        (OPTION_8, 'Converted Flat'),
-        (OPTION_9, 'Maisonette'),
-        (OPTION_10, 'Cottage'),
-        (OPTION_11, 'Bungalow'),
-        (OPTION_12, 'Mansion'),
-
-    ]
-
-    NUMBER_CHOICES = [
-        (OPTN_1, 1),
-        (OPTN_2, 2),
-        (OPTN_3, 3),
-        (OPTN_4, 4),
-        (OPTN_5, 5),
-        (OPTN_6, 6),
-        (OPTN_7, 7),
-        (OPTN_8, 8),
-        (OPTN_9, 9),
-        (OPTN_10, 10),
-        (OPTN_11, 11),
-        (OPTN_12, 12),
-    ]
-
-    house_name = models.CharField(max_length=100)
-    location_id = models.CharField(max_length=100)
-    house_address_one = models.CharField(max_length=100)
-    house_address_two = models.CharField(max_length=100, default='')
-    postcode = models.CharField(max_length=100)
-    house_number = models.IntegerField(default=0)
-    house_email = models.EmailField(max_length=254, default='')
-    number_of_beds = models.IntegerField(choices=NUMBER_CHOICES, default=OPTN_1)
-    number_of_bathrooms = models.IntegerField(choices=NUMBER_CHOICES, default=OPTN_1)
-    house_type_of_accommodation = models.CharField(max_length=50, choices=PLACEMENT_CHOICES)
-    date_added = models.DateTimeField (default=timezone.now)
-
-    class Meta:
-        verbose_name_plural = "Care House Information"
-
-    def __str__(self):
-        return self.house_name
-
-    def get_absolute_url(self):
-        return reverse('home-detail', kwargs={'pk': self.pk})
 
 
 class YP_Contact_Info(models.Model):
@@ -1007,7 +986,6 @@ class YP_Physical_Description(models.Model):
     yp_disabilities = models.CharField(max_length=100)
     yp_relevant_medical_information = RichTextField(blank=True, null=True)
     yp_medications = RichTextField(blank=True, null=True)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     yp_date_added = models.DateTimeField(default=timezone.now)
 
     class Meta:
@@ -1015,16 +993,6 @@ class YP_Physical_Description(models.Model):
 
     def __str__(self):
         return f'{self.yp} Physical Description'
-
-    def save(self, *args, **kwargs):
-        super(YP_Physical_Description, self).save(*args, **kwargs)
-
-        img = Image.open(self.image.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
 
     def get_absolute_url(self):
         return reverse('physical-detail', kwargs={'pk': self.pk})

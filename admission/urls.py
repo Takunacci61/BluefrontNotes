@@ -21,14 +21,14 @@ urlpatterns = [
     path('', views.dashboard, name='admission-home'),
     path('child/list/', ChildListView.as_view(), name='admission-list'),
     path('child/all/', ChildListAllView.as_view(), name='admission-all'),
-    path('/child/<int:pk>/profile/', PicUpdateView.as_view(), name='pic-update'),
+    path('child/<int:pk>/profile/', PicUpdateView.as_view(), name='pic-update'),
     path('admissions/', views.admissions, name='admission-admissions'),
 
     # General Information
-    path('/child/new/', ChildCreateView.as_view(), name='child-create'),
-    path('/child/<int:pk>/', ChildDetailView.as_view(), name='child-detail'),
-    path('/child/<int:pk>/update/', ChildUpdateView.as_view(), name='child-update'),
-    path('/child/<int:pk>/delete/', ChildDeleteView.as_view(), name='child-delete'),
+    path('child/new/', ChildCreateView.as_view(), name='child-create'),
+    path('child/<int:pk>/', ChildDetailView.as_view(), name='child-detail'),
+    path('child/<int:pk>/update/', ChildUpdateView.as_view(), name='child-update'),
+    path('child/<int:pk>/delete/', ChildDeleteView.as_view(), name='child-delete'),
 
     # Placement Authority
     path('authority/new/', AuthorityCreateView.as_view(), name='authority-create'),

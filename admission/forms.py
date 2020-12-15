@@ -1,5 +1,5 @@
 from django import forms
-from .models import YP_General_Information, Local_Authority, Care_House_Infomation, YP_Contact_Info, YP_Health_And_Wellness, YP_Physical_Description,\
+from .models import YP_General_Information, Local_Authority, Care_House_Information, YP_Contact_Info, YP_Health_And_Wellness, YP_Physical_Description,\
     YP_Pen_Pic,YP_Banking_Information, YP_IPA, YP_Profile_Child, YP_Relationships_Associates, Profile_Pic
 
 
@@ -7,25 +7,26 @@ class YP_General_InformationForm (forms.ModelForm):
     class Meta:
         model = YP_General_Information
         fields = ['yp_first_name', 'yp_surname', 'yp_nickname', 'yp_previous_name',
-                  'yp_date_of_birth', 'yp_gender', 'yp_ethnicity', 'yp_nationality', 'yp_country_origin',
+                  'yp_date_of_birth', 'yp_gender',  'parenthood','yp_ethnicity', 'yp_nationality', 'yp_country_origin',
                   'yp_first_language','yp_other_spoken_languages', 'local_authority', 'yp_assigned_id', 'yp_status', 'yp_uasc']
 
         widgets = {
-            'yp_first_name': forms.TextInput (attrs={'class': 'form-control'}),
+            'yp_first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'yp_surname': forms.TextInput(attrs={'class': 'form-control'}),
-            'yp_nickname': forms.TextInput (attrs={'class': 'form-control'}),
-            'yp_previous_name': forms.TextInput (attrs={'class': 'form-control'}),
-            'yp_date_of_birth': forms.DateInput (attrs={'class': 'form-control', 'type': 'date'}),
-            'yp_gender': forms.Select (attrs={'class': 'form-control'}),
-            'yp_nationality': forms.Select (attrs={'class': 'form-control'}),
-            'yp_first_language': forms.Select (attrs={'class': 'form-control'}),
-            'yp_ethnicity': forms.Select (attrs={'class': 'form-control'}),
-            'yp_country_origin': forms.Select (attrs={'class': 'form-control'}),
-            'yp_other_spoken_languages': forms.Select (attrs={'class': 'form-control'}),
-            'local_authority': forms.Select (attrs={'class': 'form-control'}),
+            'yp_nickname': forms.TextInput(attrs={'class': 'form-control'}),
+            'yp_previous_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'yp_date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'yp_gender': forms.Select(attrs={'class': 'form-control'}),
+            'yp_nationality': forms.Select(attrs={'class': 'form-control'}),
+            'yp_first_language': forms.Select(attrs={'class': 'form-control'}),
+            'yp_ethnicity': forms.Select(attrs={'class': 'form-control'}),
+            'yp_country_origin': forms.Select(attrs={'class': 'form-control'}),
+            'yp_other_spoken_languages': forms.Select(attrs={'class': 'form-control'}),
+            'local_authority': forms.Select(attrs={'class': 'form-control'}),
+            'parenthood': forms.Select(attrs={'class': 'form-control'}),
             'yp_assigned_id': forms.TextInput (attrs={'class': 'form-control'}),
-            'yp_status': forms.Select (attrs={'class': 'form-control'}),
-            'yp_uasc': forms.Select (attrs={'class': 'form-control'}),
+            'yp_status': forms.Select(attrs={'class': 'form-control'}),
+            'yp_uasc': forms.Select(attrs={'class': 'form-control'}),
 
         }
 
@@ -44,6 +45,7 @@ class YP_General_InformationForm (forms.ModelForm):
             'yp_first_language': 'First Language',
             'yp_country_origin': 'Country Origin',
             'yp_other_spoken_languages': 'Other Spoken Languages',
+            'parenthood': 'Is She/He a parent',
             'yp_status': 'Status',
             'yp_uasc': 'UASC'
 
@@ -86,7 +88,7 @@ class Care_House_InfomationForm (forms.ModelForm):
     house_email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), required=False, label='House Email')
 
     class Meta:
-        model = Care_House_Infomation
+        model = Care_House_Information
         fields = ['house_name', 'house_address_one', 'house_address_two', 'location_id', 'postcode', 'house_number','house_email', 'house_type_of_accommodation',
                   'number_of_beds','number_of_bathrooms']
 
@@ -116,9 +118,6 @@ class Care_House_InfomationForm (forms.ModelForm):
             'number_of_bathrooms': 'Number of Bathrooms',
             'house_type_of_accommodation': 'Type of House',
         }
-
-
-
 
 
 # Contact information

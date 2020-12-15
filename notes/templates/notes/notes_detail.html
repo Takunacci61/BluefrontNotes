@@ -1,6 +1,5 @@
 {% extends "notes/base.html" %}
 {% block content %}
-
     {% if user.is_authenticated %}
 
 	<!-- Breadcomb area Start-->
@@ -45,7 +44,7 @@
                         <div class="typography-bd">
                             <h5><i class="notika-icon notika-calendar"></i> Contact Date: {{object.date_notes|date:"F d, Y" }}</h5>
                             <p><i class="notika-icon notika-alarm"></i> Start Time: {{object.time_start}} - End Time: {{object.time_end}}</p>
-
+                          <p><i class="notika-icon notika-wifi"></i> Duration : {{object.duration}}</p>
                             <p>{{object.detailed_notes |safe}}</p>
                         </div>
 
