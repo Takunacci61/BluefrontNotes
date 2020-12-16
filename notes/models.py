@@ -7,6 +7,7 @@ from django.utils.datetime_safe import date
 from admission.models import YP_General_Information
 
 
+
 class Notes(models.Model):
     OPTION_1 = 'Face-to-Face'
     OPTION_2 = 'Telephone'

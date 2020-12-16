@@ -7,8 +7,8 @@ class YP_General_InformationForm (forms.ModelForm):
     class Meta:
         model = YP_General_Information
         fields = ['yp_first_name', 'yp_surname', 'yp_nickname', 'yp_previous_name',
-                  'yp_date_of_birth', 'yp_gender',  'parenthood','yp_ethnicity', 'yp_nationality', 'yp_country_origin',
-                  'yp_first_language','yp_other_spoken_languages', 'local_authority', 'yp_assigned_id', 'yp_status', 'yp_uasc']
+                  'yp_date_of_birth', 'yp_gender',  'parenthood', 'yp_ethnicity', 'yp_nationality', 'yp_country_origin',
+                  'yp_first_language','yp_other_spoken_languages', 'assigned_home', 'local_authority', 'yp_assigned_id', 'yp_status', 'yp_uasc']
 
         widgets = {
             'yp_first_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -22,6 +22,7 @@ class YP_General_InformationForm (forms.ModelForm):
             'yp_ethnicity': forms.Select(attrs={'class': 'form-control'}),
             'yp_country_origin': forms.Select(attrs={'class': 'form-control'}),
             'yp_other_spoken_languages': forms.Select(attrs={'class': 'form-control'}),
+            'assigned_home': forms.Select(attrs={'class': 'form-control'}),
             'local_authority': forms.Select(attrs={'class': 'form-control'}),
             'parenthood': forms.Select(attrs={'class': 'form-control'}),
             'yp_assigned_id': forms.TextInput (attrs={'class': 'form-control'}),
@@ -35,6 +36,7 @@ class YP_General_InformationForm (forms.ModelForm):
             'yp_first_name': 'First Name',
             'yp_surname': 'Surname',
             'local_authority': 'Placing Authority',
+            'assigned_home': 'Assigned House',
             'yp_assigned_id': 'ID Assigned by the Council ',
             'yp_nickname': 'Nickname',
             'yp_previous_name': 'Previous Name',

@@ -29,7 +29,7 @@ class Local_Authority(models.Model):
         return reverse('authority-detail', kwargs={'pk': self.pk})
 
 
-class Care_House_Information (models.Model):
+class Care_House_Information(models.Model):
 
     OPTION_1 = 'Detached'
     OPTION_2 = 'Semi-Detached'
