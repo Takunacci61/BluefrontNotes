@@ -62,7 +62,7 @@ class NotesCreateView (LoginRequiredMixin, CreateView):
     model = Notes
     form_class = NotesForm
     template_name = 'notes/notes_create.html'
-    Notes.objects.update(duration=F('time_end') - F('time_start'))
+    #Notes.objects.update(duration=F('time_end') - F('time_start'))
 
     def form_valid(self, form):
         form.instance.staff = self.request.user
